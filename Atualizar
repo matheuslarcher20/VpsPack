@@ -4,4 +4,5 @@ echo " "
 echo "Atualizando..."
 wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/VpsPack-install && bash VpsPack-install
 clear
+echo " "
 echo -e "\033[0;32mconcluídos\033[0m"
