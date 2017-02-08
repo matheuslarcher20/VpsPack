@@ -62,4 +62,4 @@ Ou retire o limite de todos
 
 rm -r /etc/tempo /etc/usuarios
 
-\033[40;1;37m(VpsPack)\033[0m"
+\033[40;1;37mVpsPack\033[0m"
