@@ -96,8 +96,6 @@ case $opcao in
   systemdetalhes;;
  16)
   Detalhes;;
- 17)
-  Desinstalar;;
  *)
   id > /dev/null 2> /dev/null
 esac
