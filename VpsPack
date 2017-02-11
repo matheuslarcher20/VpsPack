@@ -42,8 +42,8 @@ fi
 clear
 echo -e "\033[1;37m VpsPacket © Script criado por: \033[2;32mMatheus Larcher \033[0m"
 echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\033[1;34m
-[1] Limit \033[2;36m(limite de conexoes simultaneas)\033[1;34m
-[2] UserCreate \033[2;36m(Criar usuarios)\033[1;34m
+[1] UserCreate \033[2;36m(Criar usuarios)\033[1;34m
+[2] Limit \033[2;36m(limite de conexoes simultaneas)\033[1;34m
 [3] UserRedefine \033[2;36m(Opções para mudanças no usuario)\033[1;34m
 [4] Firewall-block \033[2;36m(Regras iptables block torrent, icmp [RISCOS])\033[1;34m
 [5] ResetFirewall \033[2;36m(Retira todas as regras iptables [RISCOS])\033[1;34m
@@ -62,11 +62,11 @@ read -p ": " opcao
 
 case $opcao in
  1)
+  Usercreate;;
+ 2)
   read -p "Usuario: " user
   read -p "Limite de Conexoes: " limit
   limit $user $limit;;
- 2)
-  Usercreate;;
  3)
   UserRedefine;;
   4)
