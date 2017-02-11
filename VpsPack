@@ -48,9 +48,9 @@ echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\03
 [4] ResetFirewall \033[2;36m(Retira todas as regras iptables [RISCOS])\033[1;34m
 [5] Istall-addhosts \033[2;36m(Faz a preparaçao para add-host)\033[1;34m
 [6] Add-host \033[2;36m(Adicionar hosts aceitos pelo squid )\033[1;34m
-[7] Monitoring \033[2;36m(IMPORTANTE monitorar conexões por usuarios)\033[0m\033[1;34m
-[8] Backup-Users \033[2;36m(Backup dos usuarios para reinstalação futura)\033[1;34m
-[9] Rest-Users \033[2;36m(Restaurar usuarios feito backup)\033[1;34m
+[7] Backup-Users \033[2;36m(Backup dos usuarios para reinstalação futura)\033[1;34m
+[8] Rest-Users \033[2;36m(Restaurar usuarios feito backup)\033[1;34m
+[9] Monitoring \033[2;36m(IMPORTANTE monitorar conexões por usuarios)\033[0m\033[1;34m
 [10] Detalhes-Users \033[2;36m(Mostra informações sobre os usuarios !!)\033[1;34m
 [11] Banner \033[2;36m(Banner mensagem no ssh)\033[1;34m
 [12] Speedtest \033[2;36m(Teste de conexão [velocidade de banda])\033[1;34m
@@ -73,12 +73,12 @@ case $opcao in
  6)
   add-host;;
  7)
-  Monitoring;;
- 8)
   backupusers;; 
- 9)
+ 8)
   read -p "Em qual diretorio esta o arquivo de Backup: " arq 
   restusers $arq;;
+ 9)
+  Monitoring;;
  10)
   detalhesusers;;
  11)
