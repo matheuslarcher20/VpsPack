@@ -1,14 +1,15 @@
 #!/bin/bash
 
 read -p "Qual o nome do usuario a redefinir: " name
- if cat /etc/passwd |grep $name: > /dev/null
- then
- echo " "
- else
- clear
- echo -e "\033[0;31mUsuario $name não existe\033[0m"
- exit
- fi
+if cat /etc/passwd |grep $name: > /dev/null
+then
+echo " "
+else
+echo " "
+echo -e " \033[0;31mUsuario $name não existe\033[0m"
+echo " "
+exit
+fi
 clear
 echo " "
 echo " "
