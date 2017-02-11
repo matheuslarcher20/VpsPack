@@ -5,7 +5,7 @@ then
 	echo -e "\033[1;32mNome do novo usuario:\033[0;37m"; read -p " " name
 	echo -e "\033[1;32mSenha para o usuario $name:\033[0;37m"; read -p " " pass
 	echo -e "\033[1;32mQuantos dias usuario $name deve durar:\033[0;37m"; read -p " " daysrnf
-        echo -e "\033[1;32mLimite de Conexoes para $name: \033[0;37m"; read num
+        echo -e "\033[1;32mLimite de Conexoes para $name: \033[0;37m"; read -p " " num
 limit $name $num
 	echo -e "\033[0m"
        if cat /etc/passwd |grep $name: |grep -vi [a-z]$name |grep -v [0-9]$name > /dev/null
