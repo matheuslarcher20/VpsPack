@@ -30,7 +30,7 @@ exit
 fi
 
 if [ $option -eq 3 ]; then
-wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/install && bash install
+wget wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/configuracao && bash configuracao && wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/VpsPack-install && bash VpsPack-install
 clear
 echo " "
 echo -e "\033[0;32mVps Atualizado com Sucesso\033[0m"
