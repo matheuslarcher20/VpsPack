@@ -11,13 +11,14 @@ echo -e "\033[1;31mNão foi possivel ter a senha do usuario\033[1;37m ($user)"
 read -p "Digite a Senha Manualmente ou Tecle ENTER: " pass
 fi
 
+date=$(cat /etc/VpsPackdir/date/$user)
 if [ -e /etc/VpsPackdir/limite/$user ]
 then
 limite=$(cat /etc/VpsPackdir/limite/$user)
-echo "$user:$pass:$limite" >> /etc/VpsPackdir/backup
+echo "$user:$pass:$limite:$date" >> /etc/VpsPackdir/backup
 echo -e "\033[1;37mUser $user Backup [\033[1;31mOK\033[1;37m]\033[0m"
 else
-echo "$user:$pass" >> /etc/VpsPackdir/backup
+echo "$user:$pass:$date" >> /etc/VpsPackdir/backup
 echo -e "\033[1;37mUser $user Backup [\033[1;31mOK\033[1;37m]\033[0m"
 fi
 done
