@@ -7,7 +7,7 @@ for user in `cat $arq`
 do
 usuario=$(echo "$user" |awk -F : '{print $1}')
 senha=$(echo "$user" |awk -F : '{print $2}')
-
+date=$(echo "$user" |awk -F : '{print $4}')
 if cat /etc/passwd |grep $usuario: 1> /dev/null 2>/dev/null
 then
 echo " " > /dev/null
@@ -20,11 +20,15 @@ echo "$user" |cut -d: -f3 1> /dev/null 2>/dev/null
   (echo $senha ; echo $senha) | passwd $usuario > /dev/null 2> /dev/null
   limit $usuario $limite 1> /dev/null 2> /dev/null
   echo "$senha" > /etc/VpsPackdir/senha/$usuario
-  else
+  chage -E $date $usuario 2> /dev/null
+  echo "$date" > /etc/VpsPackdir/date/$usuario
+else
   useradd -M -s /bin/false $usuario
   (echo $senha ; echo $senha) | passwd $usuario > /dev/null 2> /dev/null
   echo "$senha" > /etc/VpsPackdir/senha/$usuario
-  fi
+  chage -E $date $usuario 2> /dev/null
+  echo "$date" > /etc/VpsPackdir/date/$usuario
+fi
   echo -e "\033[1;37mUsuario: \033[1;31m$usuario \033[1;37mBackup: [\033[1;31mOk\033[1;37m]\033[0m"
 fi
 done
