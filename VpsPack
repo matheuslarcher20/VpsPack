@@ -39,6 +39,13 @@ else
 mkdir /etc/VpsPackdir/limite
 fi
 
+if [ -d /etc/VpsPackdir/date ]
+then
+echo ""
+else
+mkdir /etc/VpsPackdir/date
+fi
+
 clear
 echo -e "\033[1;37m VpsPacket © Script criado por: \033[2;32mMatheus Larcher \033[0m"
 echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\033[1;34m
