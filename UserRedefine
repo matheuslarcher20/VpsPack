@@ -53,6 +53,7 @@ fi
  rm /etc/tempo/$name.sh
  rm /etc/VpsPackdir/limite/$name
  rm /etc/VpsPackdir/senha/$name
+ rm /etc/VpsPackdir/date/$name
  echo "Usuario $name foi deletado"
  exit
  fi
@@ -63,6 +64,7 @@ fi
  rm /etc/tempo/$name.sh
  rm /etc/VpsPackdir/limite/$name
  rm /etc/VpsPackdir/senha/$name
+ rm /etc/VpsPackdir/date/$name
  kill -9 `ps aux |grep -vi '[a-z]$name' |grep -vi '$name[a-z]' |grep -v '[1-9]$name' |grep -v '$name[1-9]' |grep $name |awk {'print $2'}` 2> /dev/null
  echo "Usuario $name foi deletado e parado"
  exit
