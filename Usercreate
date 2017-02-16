@@ -33,6 +33,7 @@ clear
                 echo -e "\033[1;36m                        \033[0m"
                 echo -e "\033[1;36m                        \033[0m"
 	    echo "$pass" > /etc/VpsPackdir/senha/$name
+	    echo "$datexp" > /etc/VpsPackdir/date/$name
 	fi
 else
 	if echo $(id) |grep sudo > /dev/null
