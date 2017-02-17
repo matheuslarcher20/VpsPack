@@ -11,6 +11,7 @@ echo -e "\033[1;31mNão foi possivel ter a senha do usuario\033[1;37m ($user)"
 read -p "Digite a Senha Manualmente ou Tecle ENTER: " pass
 fi
 
+rm /etc/VpsPackdir/backup
 date=$(cat /etc/VpsPackdir/date/$user)
 if [ -e /etc/VpsPackdir/limite/$user ]
 then
