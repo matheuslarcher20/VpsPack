@@ -1,4 +1,5 @@
 #!/bin/bash
+rm /etc/VpsPackdir/backup
 clear
 echo -e "\033[1;37mFazendo Backup de Usuarios...\033[0m"
 for user in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]`
@@ -11,7 +12,6 @@ echo -e "\033[1;31mNão foi possivel ter a senha do usuario\033[1;37m ($user)"
 read -p "Digite a Senha Manualmente ou Tecle ENTER: " pass
 fi
 
-rm /etc/VpsPackdir/backup
 date=$(cat /etc/VpsPackdir/date/$user)
 if [ -e /etc/VpsPackdir/limite/$user ]
 then
