@@ -17,15 +17,10 @@ Tbm pode a usar com apenas um comando \033[1;33mlimit usuario limite\033[0m
 Para executar comando: Usercreate 
 Ou execute pelo VpsPack
 
-\033[1;32mUserBack:
-
-\033[1;36mObjetivo: Escolher entre deletar usuarios Forçar o deletamento e tambem desconectar todos de um usuario.
-Para executar: UserBack
-Ou execute pelo VpsPack.
-
 \033[1;32mUserRedefine:
 
-\033[1;36mFerramenta para redefinir o limite de logins de um usuario ou redefinir a data de expiraçao de um usuario.
+\033[1;36mFerramenta para redefinir o limite de logins de um usuario ou redefinir a data de expiraçao de um usuario, 
+deletar usuarios Forçar o deletamento e tambem desconectar todos de um usuario.
 Para executar: UserRedefine
 Ou execute pelo VpsPack
 
@@ -52,14 +47,25 @@ Execute pelo VpsPack
 
 \033[1;36mImportante ferramenta que le mostra quantas conexoes em cada usuario !!
 
-OUTROS:
-PARA RETIRAR O LIMITE DE CONEXOES DE UM USUARIO OU DE TODOS APAGUE
+\033[1;32mbackupusers: 
 
-rm /etc/usuarios/usuario.sh
+Faça backup dos usuarios para uma futura restauração
+
+\033[1;32mOs para trasfererir os backup para outro servidor execute: scp /etc/VpsPackdir/backup root@(IP):/root
+
+OUTROS:
+\033[1;36mPARA RETIRAR O LIMITE DE CONEXOES DE UM USUARIO OU DE TODOS APAGUE
+
+\033[1;32mrm /etc/usuarios/usuario.sh
 rm /etc/tempo/usuario.sh
 
 Ou retire o limite de todos
 
 rm -r /etc/tempo /etc/usuarios
+
+\033[1;36mAJUSTAR A HORA DO SERVIDOR:  
+\033[1;32mmv /etc/localtime /root/
+ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+ver a hora: date
 
 \033[40;1;37mVpsPack\033[0m"
