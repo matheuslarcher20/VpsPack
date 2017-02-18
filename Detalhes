@@ -49,22 +49,22 @@ Execute pelo VpsPack
 
 \033[1;32mbackupusers: 
 
-Faça backup dos usuarios para uma futura restauração
+\033[1;36mFaça backup dos usuarios para uma futura restauração
 
-\033[1;32mOs para trasfererir os backup para outro servidor execute: scp /etc/VpsPackdir/backup root@(IP):/root
+\033[1;36mOs para trasfererir os backup para outro servidor execute: scp /etc/VpsPackdir/backup root@(IP):/root
 
-OUTROS:
-\033[1;36mPARA RETIRAR O LIMITE DE CONEXOES DE UM USUARIO OU DE TODOS APAGUE
+\033[1;32mOUTROS:
+\033[1;32mPARA RETIRAR O LIMITE DE CONEXOES DE UM USUARIO OU DE TODOS APAGUE
 
-\033[1;32mrm /etc/usuarios/usuario.sh
+\033[1;36mrm /etc/usuarios/usuario.sh
 rm /etc/tempo/usuario.sh
 
 Ou retire o limite de todos
 
 rm -r /etc/tempo /etc/usuarios
 
-\033[1;36mAJUSTAR A HORA DO SERVIDOR:  
-\033[1;32mmv /etc/localtime /root/
+\033[1;32mAJUSTAR A HORA DO SERVIDOR:  
+\033[1;36mmv /etc/localtime /root/
 ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 ver a hora: date
 
