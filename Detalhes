@@ -51,7 +51,7 @@ Execute pelo VpsPack
 
 \033[1;36mFaça backup dos usuarios para uma futura restauração
 
-\033[1;36mOs para trasfererir os backup para outro servidor execute: scp /etc/VpsPackdir/backup root@(IP):/root
+\033[1;36mPara trasfererir os backup para outro servidor execute: scp /etc/VpsPackdir/backup root@(IP):/root
 
 \033[1;32mOUTROS:
 \033[1;32mPARA RETIRAR O LIMITE DE CONEXOES DE UM USUARIO OU DE TODOS APAGUE
