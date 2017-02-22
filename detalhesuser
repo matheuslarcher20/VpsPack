@@ -1,6 +1,15 @@
 #!/bin/bash
 
 read -p "Qual usuario vc deseja ver detalhes? " users
+if cat /etc/passwd |grep $users: > /dev/null
+then
+echo " "
+else
+echo " "
+echo -e " \033[0;31mUsuario $users não existe\033[0m"
+echo " "
+exit
+fi
 
 clear
 if cat /etc/VpsPackdir/limite/$users > /dev/null 2> /dev/null
