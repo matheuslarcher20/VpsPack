@@ -1,7 +1,5 @@
 #!/bin/bash
-echo "
 
-"
 read -p "Qual usuario vc deseja ver detalhes? " users
 
 clear
