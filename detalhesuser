@@ -1,0 +1,51 @@
+#!/bin/bash
+clear
+
+read users
+
+clear
+if cat /etc/VpsPackdir/limite/$users > /dev/null 2> /dev/null
+then
+limitecs=$(cat /etc/VpsPackdir/limite/$users)
+else
+limitecs="null"
+fi
+
+if  senha=$(cat /etc/VpsPackdir/senha/$users > /dev/null 2> /dev/null)
+then
+senha=$(cat /etc/VpsPackdir/senha/$users)
+else
+senha="null"
+fi
+
+if  data=$(cat /etc/VpsPackdir/date/$users > /dev/null 2> /dev/null)
+then
+data=$(cat /etc/VpsPackdir/date/$users)
+else
+date="Nunca"
+fi
+
+if  IP=$(cat /bin/IPVPS > /dev/null 2> /dev/null)
+then
+IP=$(cat /bin/IPVPS)
+fi
+
+                data=$(date '+%C%y-%m-%d' -d " +$daysrnf days")
+                datar=$(date "+%d/%m/%Y" -d "+ $daysrnf days")
+clear
+echo -e "\033[1;32m##########################################"
+echo -e "
+\033[1;36m Usuario: \033[2;37m$users
+\033[1;36m Senha: \033[2;37m$senha
+\033[1;36m Limite de conexoes: \033[2;37m$limitecs
+\033[1;36m Data de expiração: \033[2;37m$datar
+
+\033[1;36m IP do Servidor SSH: \033[2;37m$IP
+\033[1;36m Porta SSH: \033[2;37m22 \033[1;36mou \033[2;37m443
+\033[1;36m IP da Proxy: \033[2;37m$IP
+\033[1;36m Porta Proxy: \033[2;37m80 \033[1;36mou \033[2;37m8080 \033[1;36mou \033[2;37m8799
+"
+echo -e "\033[1;32m##########################################\033[1;0m"
+echo "
+
+"
