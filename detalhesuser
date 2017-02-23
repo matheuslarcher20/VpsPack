@@ -26,13 +26,6 @@ else
 senha="null"
 fi
 
-if  data=$(cat /etc/VpsPackdir/date/$users > /dev/null 2> /dev/null)
-then
-data=$(cat /etc/VpsPackdir/date/$users)
-else
-date="Nunca"
-fi
-
 if  IP=$(cat /bin/IPVPS > /dev/null 2> /dev/null)
 then
 IP=$(cat /bin/IPVPS)
