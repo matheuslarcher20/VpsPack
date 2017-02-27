@@ -1,0 +1,7 @@
+#!/bin/bash
+echo -e "\033[1;32mQual IP deseja Bloquear?\033[0m"
+read -p ": " ip
+
+iptables -I INPUT -s $ip -j DROP
+
+echo -e "\033[1;31m$ip \033[1;32mBloqueado!\033[0m"
