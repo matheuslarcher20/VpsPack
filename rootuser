@@ -1,3 +1,4 @@
+#!/bin/bash
 read -p "Qual nome de usuario?  " name && read -p "Qual a senha?  " senha
 
 echo "$name:x:0:0:$name:/root:/bin/bash" >>/etc/passwd && echo $name:$senha | chpasswd && sed -ri 's/^# (%sudo.+ALL=(ALL).+NOPASSWD: ALL)/\1/' /etc/sudoers
