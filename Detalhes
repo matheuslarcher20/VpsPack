@@ -64,10 +64,4 @@ Ou retire o limite de todos
 
 rm -r /etc/tempo /etc/usuarios
 
-\033[1;32mAJUSTAR A HORA DO SERVIDOR:  
-
-\033[1;36mmv /etc/localtime /root/
-ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
-ver a hora: date
-
 \033[40;1;37mVpsPack\033[0m"
