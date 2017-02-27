@@ -17,6 +17,10 @@ Tbm pode a usar com apenas um comando \033[1;33mlimit usuario limite\033[0m
 Para executar comando: Usercreate 
 Ou execute pelo VpsPack
 
+\033[1;32mrootuser:
+
+\033[1;36mcria um usuario com privilegio root
+
 \033[1;32mUserRedefine:
 
 \033[1;36mFerramenta para redefinir o limite de logins de um usuario ou redefinir a data de expiraçao de um usuario, 
@@ -43,6 +47,12 @@ MUITAS EMPRESAS USAM O IPTABLES EM SUAS MAQUINAS VIRTUAIS E ESSE NÃO PODE SER A
 
 Execute pelo VpsPack
 
+\033[1;32mblock & desblock:
+
+\033[1;36mFerramenta block bloqueia de um determinado IP ou host
+
+\033[1;36mFerramenta desblock desbloqueia de um determinado IP ou host
+
 \033[1;32mMonitoring:
 
 \033[1;36mImportante ferramenta que le mostra quantas conexoes em cada usuario !!
@@ -52,7 +62,7 @@ Execute pelo VpsPack
 \033[1;36mFaça backup dos usuarios para uma futura restauração
 
 \033[1;36mPara trasfererir os backup para outro servidor execute: 
-scp /etc/VpsPackdir/backup root@(IP):/root
+scp /etc/VpsPackdir/backup root@IP:/root
 
 \033[1;32mOUTROS:
 \033[1;32mPARA RETIRAR O LIMITE DE CONEXOES DE UM USUARIO OU DE TODOS APAGUE
