@@ -53,19 +53,17 @@ echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\03
 [2] UserRedefine \033[2;36m(Opções para mudanças no usuario)\033[1;34m
 [3] Firewall-block \033[2;36m(Regras iptables block torrent, icmp [RISCOS])\033[1;34m
 [4] ResetFirewall \033[2;36m(Retira todas as regras iptables [RISCOS])\033[1;34m
-[5] istall-badVPN \033[2;36m(Instalar badVPN para encaminhamento UDP)\033[1;34m
-[6] Istall-addhosts \033[2;36m(Faz a preparaçao para add-host)\033[1;34m
-[7] Add-host \033[2;36m(Adicionar hosts aceitos pelo squid )\033[1;34m
-[8] Backup-Users \033[2;36m(Backup dos usuarios para reinstalação futura)\033[1;34m
-[9] Rest-Users \033[2;36m(Restaurar usuarios feito backup)\033[1;34m
-[10] Monitoring \033[2;36m(IMPORTANTE monitorar conexões por usuarios)\033[0m\033[1;34m
-[11] Detalhes-Users \033[2;36m(Mostra informações sobre os usuarios !!)\033[1;34m
-[12] Detalhes-User \033[2;36m(Mostra informações de um unico usuarios)\033[1;34m
-[13] Banner \033[2;36m(Banner mensagem no ssh)\033[1;34m
-[14] Speedtest \033[2;36m(Teste de conexão [velocidade de banda])\033[1;34m
-[15] System-Detalhes \033[2;36m(Detalhes sobre o Sistema)\033[1;34m
-[16] Detalhes \033[2;36m(Detalhes sobre o VpsPack)\033[1;34m
-[17] Atualizar \033[2;36m(Remover o VpsPack)\033[0m"
+[5] Install-badVPN \033[2;36m(Instalar badVPN para encaminhamento UDP)\033[1;34m
+[6] Backup-Users \033[2;36m(Backup dos usuarios para reinstalação futura)\033[1;34m
+[7] Rest-Users \033[2;36m(Restaurar usuarios feito backup)\033[1;34m
+[8] Monitoring \033[2;36m(IMPORTANTE monitorar conexões por usuarios)\033[0m\033[1;34m
+[9] Detalhes-Users \033[2;36m(Mostra informações sobre os usuarios !!)\033[1;34m
+[10] Detalhes-User \033[2;36m(Mostra informações de um unico usuarios)\033[1;34m
+[11] Banner \033[2;36m(Banner mensagem no ssh)\033[1;34m
+[12] Speedtest \033[2;36m(Teste de conexão [velocidade de banda])\033[1;34m
+[13] System-Detalhes \033[2;36m(Detalhes sobre o Sistema)\033[1;34m
+[14] Detalhes \033[2;36m(Detalhes sobre o VpsPack)\033[1;34m
+[15] Atualizar \033[2;36m(Remover o VpsPack)\033[0m"
 read -p ": " opcao
 
 case $opcao in
@@ -80,29 +78,25 @@ case $opcao in
  5)
   install-badVPN;;
  6)
-  install-addhost;;
- 7)
-  add-host;;
- 8)
   backupusers;;
- 9)
+ 7)
   read -p "Em qual diretorio esta o arquivo de Backup: " arq
   restusers $arq;;
- 10)
+ 8)
   Monitoring;;
- 11)
+ 9)
   detalhesusers;;
- 12)
+ 10)
  detalhesuser;;
- 13)
+ 11)
   banner;;
- 14)
+ 12)
   speedtest;;
- 15)
+ 13)
   systemdetalhes;;
- 16)
+ 14)
   Detalhes;;
- 17)
+ 15)
   Atualizar;;
  *)
   id > /dev/null 2> /dev/null
