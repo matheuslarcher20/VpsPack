@@ -57,8 +57,8 @@ echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\03
 [6] Backup-Users \033[2;36m(Backup dos usuarios para reinstalação futura)\033[1;34m
 [7] Rest-Users \033[2;36m(Restaurar usuarios feito backup)\033[1;34m
 [8] Monitoring \033[2;36m(IMPORTANTE monitorar conexões por usuarios)\033[0m\033[1;34m
-[9] Detalhes-Users \033[2;36m(Mostra informações sobre os usuarios !!)\033[1;34m
-[10] Detalhes-User \033[2;36m(Mostra informações de um unico usuarios)\033[1;34m
+[9] Detalhes-User \033[2;36m(Mostra informações de um unico usuarios)\033[1;34m
+[10] Detalhes-Users \033[2;36m(Mostra informações de todos os usuarios !!)\033[1;34m
 [11] Banner \033[2;36m(Banner mensagem no ssh)\033[1;34m
 [12] Speedtest \033[2;36m(Teste de conexão [velocidade de banda])\033[1;34m
 [13] System-Detalhes \033[2;36m(Detalhes sobre o Sistema)\033[1;34m
@@ -85,9 +85,9 @@ case $opcao in
  8)
   Monitoring;;
  9)
-  detalhesusers;;
- 10)
  detalhesuser;;
+ 10)
+  detalhesusers;;
  11)
   banner;;
  12)
