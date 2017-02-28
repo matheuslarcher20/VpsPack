@@ -31,6 +31,8 @@ then
 IP=$(cat /bin/IPVPS)
 fi
 
+usernum=$(ps -u $users |grep sshd |wc -l)
+
 data1=$(cat "/etc/VpsPackdir/date/$users" |awk -F / '{print $1}')
 data2=$(cat "/etc/VpsPackdir/date/$users" |awk -F / '{print $2}')
 data3=$(cat "/etc/VpsPackdir/date/$users" |awk -F / '{print $3}')
@@ -48,6 +50,21 @@ echo -e "
 \033[1;36m IP da Proxy: \033[2;37m$IP
 \033[1;36m Porta Proxy: \033[2;37m80 \033[1;36mou \033[2;37m8080 \033[1;36mou \033[2;37m3128
 "
+if [ $usernum -eq 0 ]; then
+
+echo -e "\033[1;36m Status atual: \033[1;31mOffline"
+else
+echo -e "\033[1;36m Status atual: \033[1;32mOnline"
+fi
+
+if [ $usernum -eq 0 ]; then
+echo -e "\033[1;36m Numero Conexoes Online: \033[1;31m$usernum
+"
+else
+echo -e "\033[1;36m Numero Conexoes Online: \033[1;32m$usernum
+"
+fi
+
 echo -e "\033[1;32m##########################################\033[1;0m"
 echo "
 
