@@ -39,6 +39,7 @@ if [[ "$resposta" = 's' ]]; then
 	mkdir badvpn-build
 	cd badvpn-build
 	git clone https://github.com/matheuslarcher20/BadUdp.git
+	clear
 	cd bad*
 	cmake -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
 	make install
