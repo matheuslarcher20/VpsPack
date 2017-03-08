@@ -25,8 +25,8 @@ echo -e "\033[44;1;37m O que vc deseja redefinir ?\033[0m
 read -p "opção: " option
 if [ $option -eq 1 ]; then
 read -p "Qual o novo limite de logins: " liml
-rm /etc/usuarios/$name.sh
-rm /etc/tempo/$name.sh
+rm /etc/usuarios/$name.sh /dev/null 2>/dev/null
+rm /etc/tempo/$name.sh /dev/null 2>/dev/null
 limit $name $liml
 exit 0
 fi
@@ -34,9 +34,9 @@ fi
 if [ $option -eq 2 ]; then
 echo "Qual a nova data : formato AAAA/MM/DD"
 read -p ": " date
-rm /etc/VpsPackdir/date/$name
+rm /etc/VpsPackdir/date/$name /dev/null 2>/dev/null
 chage -E $date $name 2> /dev/null
-echo "$date" > /etc/VpsPackdir/date/$name
+echo "$date" > /etc/VpsPackdir/date/$name /dev/null 2>/dev/null
 echo -e "\033[0;31mUsuario $name Date: $date\033[0m"
 exit
 fi
@@ -44,29 +44,29 @@ if [ $option -eq 3 ]
 then
 read -p "Qual a nova senha para $name: " senha
 (echo "$senha" ; echo "$senha" ) |passwd $name > /dev/null 2>/dev/null
-echo "$senha" > /etc/VpsPackdir/senha/$name
+echo "$senha" > /etc/VpsPackdir/senha/$name /dev/null 2>/dev/null
 echo "Nova senha aplicada"
 exit
 fi
 
  if [ $option -eq 4 ]; then
  userdel --force $name > /dev/null 2>/dev/null
- rm /etc/usuarios/$name.sh
- rm /etc/tempo/$name.sh
- rm /etc/VpsPackdir/limite/$name
- rm /etc/VpsPackdir/senha/$name
- rm /etc/VpsPackdir/date/$name
+ rm /etc/usuarios/$name.sh /dev/null 2>/dev/null
+ rm /etc/tempo/$name.sh /dev/null 2>/dev/null
+ rm /etc/VpsPackdir/limite/$name /dev/null 2>/dev/null
+ rm /etc/VpsPackdir/senha/$name /dev/null 2>/dev/null
+ rm /etc/VpsPackdir/date/$name /dev/null 2>/dev/null
  echo "Usuario $name foi deletado"
  exit
  fi
 
  if [ $option -eq 5 ]; then
  userdel --force $name > /dev/null 2>/dev/null
- rm /etc/usuarios/$name.sh
- rm /etc/tempo/$name.sh
- rm /etc/VpsPackdir/limite/$name
- rm /etc/VpsPackdir/senha/$name
- rm /etc/VpsPackdir/date/$name
+ rm /etc/usuarios/$name.sh /dev/null 2>/dev/null
+ rm /etc/tempo/$name.sh /dev/null 2>/dev/null
+ rm /etc/VpsPackdir/limite/$name /dev/null 2>/dev/null
+ rm /etc/VpsPackdir/senha/$name /dev/null 2>/dev/null
+ rm /etc/VpsPackdir/date/$name /dev/null 2>/dev/null
  kill -9 `ps aux |grep -vi '[a-z]$name' |grep -vi '$name[a-z]' |grep -v '[1-9]$name' |grep -v '$name[1-9]' |grep $name |awk {'print $2'}` 2> /dev/null
  echo "Usuario $name foi deletado e parado"
  exit
