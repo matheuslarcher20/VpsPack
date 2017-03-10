@@ -1,19 +1,13 @@
 #!/bin/bash
 
 read -p "Qual o nome do usuario a redefinir: " name
-if cat /etc/passwd |grep $name: > /dev/null
+nomer=$(cat /etc/passwd |grep $name: |grep -vi [a-z]$name |grep -v [0-9]$name |awk -F : '{print $7}')
+if [[ "$nomer" = "/bin/false" ]]
 then
-echo " "
-else
-echo " "
-echo -e " \033[0;31mUsuario $name não existe\033[0m"
-echo " "
-exit
-fi
 clear
 echo " "
 echo " "
-echo -e "\033[44;1;37m O que vc deseja redefinir ?\033[0m
+echo -e "\033[44;1;37m O que vc deseja redefinir para \033[1;33m$name \033[44;1;37m?\033[0m
 \033[1;32m
   1) Numero de logins
   2) Data de expiraçao
@@ -21,8 +15,16 @@ echo -e "\033[44;1;37m O que vc deseja redefinir ?\033[0m
   4) Deletar usuario
   5) Deletar e desconectar todos do usuario
   6) Desconectar todos do usuario\033[0m"
+else
+echo " "
+echo " "
+echo -e "\033[1;31m Usuario \033[0;31m$name\033[1;31m nao existe\033[0m"
+echo " "
+exit
+fi
 
 read -p "opção: " option
+
 if [ $option -eq 1 ]; then
 read -p "Qual o novo limite de logins: " liml
 rm /etc/usuarios/$name.sh /dev/null 2>/dev/null
@@ -32,19 +34,15 @@ exit 0
 fi
 
 if [ $option -eq 2 ]; then
-echo "Qual a nova data : formato AAAA/MM/DD"
-read -p ": " date
-rm /etc/VpsPackdir/date/$name /dev/null 2>/dev/null
-chage -E $date $name 2> /dev/null
-echo "$date" > /etc/VpsPackdir/date/$name /dev/null 2>/dev/null
-echo -e "\033[0;31mUsuario $name Date: $date\033[0m"
+echo $name >> "/etc/cache202.sh"
+cache201.sh
 exit
 fi
-if [ $option -eq 3 ]
-then
+if [ $option -eq 3 ]; then
 read -p "Qual a nova senha para $name: " senha
 (echo "$senha" ; echo "$senha" ) |passwd $name > /dev/null 2>/dev/null
-echo "$senha" > /etc/VpsPackdir/senha/$name /dev/null 2>/dev/null
+rm /etc/VpsPackdir/senha/$name /dev/null 2>/dev/null
+echo "$senha" > /etc/VpsPackdir/senha/$name
 echo "Nova senha aplicada"
 exit
 fi
@@ -77,5 +75,4 @@ fi
  echo "Usuario $name foi parado"
  exit
  fi
-
-echo -e "\033[1;31messa opçao não existe\033[0m"
+echo -e "\033[1;31mEsta opcao nao existe\033[0m"
