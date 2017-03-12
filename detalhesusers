@@ -27,8 +27,11 @@ then
 date="Nunca"
 fi
 
-usernum=$(ps -u $users |grep sshd |wc -l)
+usertotal=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- | wc -l)
 
+calculo=$(ps x | grep "sshd:" |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi grep --color=auto |grep -vi root@pts/ |grep -vi accepted |wc -l)
+
+usernum=$(ps -u $users |grep sshd |wc -l) 2> /dev/null
 detalhesdata=$(printf '%-18s' "$data")
 detalheslimit=$(printf '%-10s' "$limitecs")
 detalhes=$(printf ' %-21s' "$users")
@@ -38,6 +41,6 @@ echo -e "\033[1;33m$detalhes $detalhespass $detalhesdata   $detalheslimit \033[1
 else
 echo -e "\033[1;33m$detalhes $detalhespass $detalhesdata   $detalheslimit \033[1;32m  $usernum\033[0m"
 fi
-
 echo -e "\033[1;30m------------------------------------------------------------------------------------\033[0m"
 done
+echo -e "\033[1;33mTotal: $usertotal     Online: \033[1;32m$calculo\033[0m"
