@@ -29,7 +29,7 @@ fi
 
 usertotal=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- | wc -l)
 
-calculo=$(ps x | grep "sshd:" |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi grep --color=auto |grep -vi root |grep -vi accepted |wc -l)
+calculo=$(ps x | grep "sshd:" |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi grep --color=auto |grep -vi @pts/ |grep -vi accepted |wc -l)
 
 usernum=$(ps -u $users |grep sshd |wc -l) 2> /dev/null
 detalhesdata=$(printf '%-18s' "$data")
