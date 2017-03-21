@@ -53,7 +53,7 @@ echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\03
 [2] UserRedefine \033[2;36m(Opções para mudanças no usuario)\033[1;34m
 [3] firewall-block \033[2;36m(Regras iptables block torrent, icmp [RISCOS])\033[1;34m
 [4] ResetFirewall \033[2;36m(Retira todas as regras iptables [RISCOS])\033[1;34m
-[5] install-badVPN \033[2;36m(Instalar badVPN para encaminhamento UDP)\033[1;34m
+[5] OpenVPN \033[2;36m(Instalar badVPN para encaminhamento UDP)\033[1;34m
 [6] backupusers \033[2;36m(Backup dos usuarios para reinstalação futura)\033[1;34m
 [7] restusers \033[2;36m(Restaurar usuarios feito backup)\033[1;34m
 [8] detalhesuser \033[2;36m(Mostra informações de um unico usuarios)\033[1;34m
@@ -75,7 +75,7 @@ case $opcao in
  4)
   ResetFirewall;;
  5)
-  install-badVPN;;
+  OpenVPN;;
  6)
   backupusers;;
  7)
