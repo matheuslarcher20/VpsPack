@@ -122,10 +122,7 @@ echo ""
 			# Generates the custom client.ovpn
 			newclient "$CLIENT"
 			echo ""
-			echo -e "\033[1;32m Seu arquivo está disponivel em \033[1;36m/etc/clientes/$CLIENT.ovpn\033[0m"
-	                echo ""
-	                echo -e "\033[1;32m Uma copia do seu arquivo está disponivel em \033[1;36m" ~/"$CLIENT.ovpn\033[0m"
-cp $CLIENT.ovpn /etc/clientes			
+			echo -e "\033[1;32m Seu arquivo está disponivel em \033[1;36m" ~/"$CLIENT.ovpn\033[0m"	
 			echo ""
 			exit
 			;;
@@ -150,7 +147,6 @@ cp $CLIENT.ovpn /etc/clientes
 			cd /etc/openvpn/easy-rsa/
 			./easyrsa --batch revoke $CLIENT
 			./easyrsa gen-crl
-			rm /etc/clientes/$CLIENT.ovpn
 			rm -rf pki/reqs/$CLIENT.req
 			rm -rf pki/private/$CLIENT.key
 			rm -rf pki/issued/$CLIENT.crt
@@ -447,10 +443,6 @@ verb 3" > /etc/openvpn/client-common.txt
 	echo -e "\033[0;31m CONCLUIDO...! \033[0;31m"
 	sleep 2
 	echo ""
-	echo -e "\033[1;32m Seu arquivo está disponivel em \033[1;36m/etc/clientes/$CLIENT.ovpn\033[0m"
-	echo ""
-	echo -e "\033[1;32m Uma copia do seu arquivo está disponivel em \033[1;36m" ~/"$CLIENT.ovpn\033[0m"
-cp " ~/"$CLIENT.ovpn /etc/clientes
+	echo -e "\033[1;32m Seu arquivo está disponivel em \033[1;36m" ~/"$CLIENT.ovpn\033[0m"
 fi
 echo -e "\033[0m"
-cp " ~/"$CLIENT.ovpn /etc/clientes
