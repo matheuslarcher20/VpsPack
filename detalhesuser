@@ -28,7 +28,7 @@ fi
 
 if  IP=$(cat /bin/IPVPS > /dev/null 2> /dev/null)
 then
-IP=$(cat /bin/IPVPS)
+IP=$(wget -qO- ipv4.icanhazip.com)
 fi
 
 usernum=$(ps -u $users |grep sshd |wc -l)
