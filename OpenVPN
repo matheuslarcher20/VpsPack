@@ -121,11 +121,11 @@ echo ""
 			./easyrsa build-client-full $CLIENT nopass
 			# Generates the custom client.ovpn
 			newclient "$CLIENT"
-			cp $CLIENT.ovpn /etc/clientes
 			echo ""
 			echo -e "\033[1;32m Seu arquivo está disponivel em \033[1;36m/etc/clientes/$CLIENT.ovpn\033[0m"
 	                echo ""
 	                echo -e "\033[1;32m Uma copia do seu arquivo está disponivel em \033[1;36m" ~/"$CLIENT.ovpn\033[0m"
+cp $CLIENT.ovpn /etc/clientes			
 			echo ""
 			exit
 			;;
@@ -446,10 +446,10 @@ verb 3" > /etc/openvpn/client-common.txt
 	echo ""
 	echo -e "\033[0;31m CONCLUIDO...! \033[0;31m"
 	sleep 2
-	cp $CLIENT.ovpn /etc/clientes
 	echo ""
 	echo -e "\033[1;32m Seu arquivo está disponivel em \033[1;36m/etc/clientes/$CLIENT.ovpn\033[0m"
 	echo ""
 	echo -e "\033[1;32m Uma copia do seu arquivo está disponivel em \033[1;36m" ~/"$CLIENT.ovpn\033[0m"
+cp $CLIENT.ovpn /etc/clientes
 fi
 echo -e "\033[0m"
