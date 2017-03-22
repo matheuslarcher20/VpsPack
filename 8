@@ -26,11 +26,7 @@ else
 senha="null"
 fi
 
-if  IP=$(cat /bin/IPVPS > /dev/null 2> /dev/null)
-then
 IP=$(wget -qO- ipv4.icanhazip.com)
-fi
-
 usernum=$(ps -u $users |grep sshd |wc -l)
 
 data1=$(cat "/etc/VpsPackdir/date/$users" |awk -F / '{print $1}')
