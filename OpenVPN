@@ -143,9 +143,8 @@ echo ""
 		case $option in
 			1) 
 			echo ""
-			echo "Diga-me um nome para o usuario"
-			echo "Use somente o nome sem caracteres especiais"
-			read -p "Client name: " CLIENT
+			echo -e "\033[1;32m Diga-me um nome para o novo usuario\033[0m"
+			read -p " Nome: " CLIENT
 			cd /etc/openvpn/easy-rsa/
 			./easyrsa build-client-full $CLIENT nopass
 			# Generates the custom client.ovpn
