@@ -11,10 +11,10 @@ read -p " opção: " option
 
 echo "   Atualizando..."
 
-
+cd 
 if [ $option -eq 1 ]; then
-rm /root/VpsPack-install 2> /dev/null
-https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/OpenVPN-pack && bash OpenVPN-pack
+rm OpenVPN-pack 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/OpenVPN-pack && bash OpenVPN-pack
 clear
 echo " "
 echo -e "\033[0;32mOpenVPN Atualizado com Sucesso\033[0m"
@@ -22,7 +22,7 @@ exit
 fi
 
 if [ $option -eq 2 ]; then
-rm /root/configuracao 2> /dev/null
+rm configuracao 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/configuracao && bash configuracao
 clear
 echo " "
@@ -31,9 +31,10 @@ exit
 fi
 
 if [ $option -eq 3 ]; then
-rm /root/VpsPack-install 2> /dev/null 
-rm /root/configuracao 2> /dev/null
-wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/OpenPack
+rm OpenVPN-pack 2> /dev/null 
+rm configuracao 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/OpenVPN-pack && bash OpenVPN-pack
+wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/configuracao && bash configuracao
 clear
 echo " "
 echo -e "\033[0;32mVps Atualizado com Sucesso\033[0m"
