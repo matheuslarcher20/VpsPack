@@ -3,7 +3,7 @@ clear
 echo " "
 echo -e " \033[44;1;37m O que vc deseja Atualizar ?\033[0m
 
-\033[1;32m  1) Atualizar VpsPack
+\033[1;32m  1) Atualizar OpenVPN
   2) Atualizar Configurações
   3) Atualizar Tudo\033[0m"
 echo " "
@@ -14,10 +14,10 @@ echo "   Atualizando..."
 
 if [ $option -eq 1 ]; then
 rm /root/VpsPack-install 2> /dev/null
-wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/VpsPack-install && bash VpsPack-install
+https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/OpenVPN-pack && bash OpenVPN-pack
 clear
 echo " "
-echo -e "\033[0;32mVpsPack Atualizado com Sucesso\033[0m"
+echo -e "\033[0;32mOpenVPN Atualizado com Sucesso\033[0m"
 exit
 fi
 
@@ -33,7 +33,7 @@ fi
 if [ $option -eq 3 ]; then
 rm /root/VpsPack-install 2> /dev/null 
 rm /root/configuracao 2> /dev/null
-wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/configuracao && bash configuracao && wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/VpsPack-install && bash VpsPack-install
+wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/OpenPack
 clear
 echo " "
 echo -e "\033[0;32mVps Atualizado com Sucesso\033[0m"
