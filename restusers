@@ -7,7 +7,7 @@ echo -e "\033[1;30m-------------------------------------------------------------
 for users in `cat /etc/datexp | cut -d ":" -f 1`
 do
 tempo=$(grep -w $users /etc/openvpn/openvpn-status.log | grep -vi 10.8 | cut -d "," -f 5)
-downloadupload=$(grep -w Matheus /etc/openvpn/openvpn-status.log | grep -vi 10.8 | cut -d "," -f 3,4)
+downloadupload=$(grep -w $users /etc/openvpn/openvpn-status.log | grep -vi 10.8 | cut -d "," -f 3,4)
 data=$(grep -w $users /etc/datexp | cut -d ":" -f 2)
 
 if [[ $data = "" ]] 2> /dev/null
