@@ -14,9 +14,8 @@ if [[ $data = "" ]] 2> /dev/null
 then
 date="Nunca"
 fi
-
-#usertotal=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- | wc -l)
-#calculo=$(ps x | grep "sshd:" |grep "priv" |grep -vi root |wc -l)
+usertotal=$(cat /etc/datexp | cut -d ":" -f 1 | wc -l)
+#calculo=$(grep -w $users /etc/openvpn/openvpn-status.log | grep -vi 10.8 | wc -l)
 
 detalhesdata=$(printf '%-18s' "$data")
 detalhesdownload=$(printf '%-16s' "$downloadupload")
