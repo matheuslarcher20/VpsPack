@@ -18,7 +18,7 @@ newclient () {
 }
 
                     echo ""
-                        echo -e "\033[1;32m Diga-me um nome para o novo usuario\033[0m"
+                        echo -e "\033[1;32m Diga-me um nome para o novo certificado\033[0m"
                         read -p " Nome: " CLIENT
                         cd /etc/openvpn/easy-rsa/
                         VALIDADOR=$(cat /etc/openvpn/easy-rsa/pki/issued/$CLIENT.crt > /dev/null 2> /dev/null)
@@ -26,7 +26,7 @@ newclient () {
                         echo " "
                         else
                         echo -e "
-\033[0;31mUsuario\033[1;31m $CLIENT \033[0;31mja existe!!\033[0m
+\033[0;31mUm certificado com o nome:\033[1;31m $CLIENT \033[0;31mja existe!!\033[0m
 "
                         exit
                        fi
