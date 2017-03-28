@@ -53,16 +53,14 @@ echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\03
 [2] UserRedefine \033[2;36m(Opções para mudanças no usuario)\033[1;34m
 [3] firewall-block \033[2;36m(Regras iptables block torrent, icmp [RISCOS])\033[1;34m
 [4] ResetFirewall \033[2;36m(Retira todas as regras iptables [RISCOS])\033[1;34m
-[5] OpenVPN \033[2;36m(Instalar badVPN para encaminhamento UDP)\033[1;34m
-[6] backupusers \033[2;36m(Backup dos usuarios para reinstalação futura)\033[1;34m
-[7] restusers \033[2;36m(Restaurar usuarios feito backup)\033[1;34m
-[8] detalhesuser \033[2;36m(Mostra informações de um unico usuarios)\033[1;34m
-[9] detalhesusers \033[2;36m(Mostra informações de todos os usuarios !!)\033[1;34m
-[10] banner \033[2;36m(Banner mensagem no ssh)\033[1;34m
-[11] speedtest \033[2;36m(Teste de conexão [velocidade de banda])\033[1;34m
-[12] systemdetalhes \033[2;36m(Detalhes sobre o Sistema)\033[1;34m
-[13] Detalhes \033[2;36m(Detalhes sobre o VpsPack)\033[1;34m
-[14] Atualizar \033[2;36m(Remover o VpsPack)\033[0m"
+[5] backupusers \033[2;36m(Backup dos usuarios para reinstalação futura)\033[1;34m
+[6] restusers \033[2;36m(Restaurar usuarios feito backup)\033[1;34m
+[7] detalhesusers \033[2;36m(Mostra informações de todos os usuarios !!)\033[1;34m
+[8] banner \033[2;36m(Banner mensagem no ssh)\033[1;34m
+[9] speedtest \033[2;36m(Teste de conexão [velocidade de banda])\033[1;34m
+[10] systemdetalhes \033[2;36m(Detalhes sobre o Sistema)\033[1;34m
+[11] Detalhes \033[2;36m(Detalhes sobre o VpsPack)\033[1;34m
+[12] Atualizar \033[2;36m(Remover o VpsPack)\033[0m"
 read -p ": " opcao
 
 case $opcao in
@@ -75,25 +73,21 @@ case $opcao in
  4)
   ResetFirewall;;
  5)
-  OpenVPN;;
- 6)
   backupusers;;
- 7)
+ 6)
   read -p "Em qual diretorio esta o arquivo de Backup: " arq
   restusers $arq;;
- 8)
- detalhesuser;;
- 9)
+ 7)
   detalhesusers;;
- 10)
+ 8)
   banner;;
- 11)
+ 9)
   speedtest;;
- 12)
+ 10)
   systemdetalhes;;
- 13)
+ 11)
   Detalhes;;
- 14)
+ 12)
   Atualizar;;
  *)
   id > /dev/null 2> /dev/null
