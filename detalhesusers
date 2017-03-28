@@ -112,7 +112,8 @@ echo -e "
 \033[1;36m Numero Conexoes Online: \033[1;31m$usernum
 "
 else
-echo -e "Status atual(SSH): \033[1;32mOnline
+echo -e "
+\033[1;36m Status atual(SSH): \033[1;32mOnline
 \033[1;36m Limite de conexoes: \033[2;37m$limitecs
 \033[1;36m Numero Conexoes Online: \033[1;32m$usernum
 "
