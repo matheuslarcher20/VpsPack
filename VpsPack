@@ -65,30 +65,54 @@ read -p ": " opcao
 
 case $opcao in
  1)
-  Usercreate;;
+  Usercreate
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
  2)
-  UserRedefine;;
+  UserRedefine
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
  3)
-  firewall-block;;
+  firewall-block
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
  4)
-  ResetFirewall;;
+  ResetFirewall
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
  5)
-  backupusers;;
+  backupusers
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
  6)
   read -p "Em qual diretorio esta o arquivo de Backup: " arq
-  restusers $arq;;
+  restusers $arq
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
  7)
-  detalhesusers;;
+  detalhesusers
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
  8)
-  banner;;
+  banner
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
  9)
-  speedtest;;
+  speedtest
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
  10)
-  systemdetalhes;;
+  systemdetalhes
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
  11)
-  Detalhes;;
+  Detalhes
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
  12)
-  Atualizar;;
+  Atualizar
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
  *)
   id > /dev/null 2> /dev/null
 esac
