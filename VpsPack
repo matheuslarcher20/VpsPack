@@ -49,7 +49,7 @@ fi
 clear
 echo -e "\033[1;37m VpsPacket © Script criado por: \033[2;32mMatheus Larcher \033[0m"
 echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\033[1;34m
-[1] Usercreate \033[2;36m(Criar usuarios)\033[1;34m
+[1] Usercreate \033[2;36m(Criar usuarios para SSH e OpenVPN)\033[1;34m
 [2] UserRedefine \033[2;36m(Opções para mudanças no usuario)\033[1;34m
 [3] firewall-block \033[2;36m(Regras iptables block torrent, icmp [RISCOS])\033[1;34m
 [4] ResetFirewall \033[2;36m(Retira todas as regras iptables [RISCOS])\033[1;34m
