@@ -1,0 +1,46 @@
+#!/bin/bash
+                        # This option could be documented a bit better and maybe even be simplimplified
+                        # ...but what can I say, I want some sleep too
+                        NUMBEROFCLIENTS=$(tail -n +2 /etc/openvpn/easy-rsa/pki/index.txt | grep -c "^V")
+                        if [[ "$NUMBEROFCLIENTS" = '0' ]]; then
+                                echo ""
+                                echo -e "\033[1;31mVocê não tem usuarios existentes!\033[0m"
+                                exit 6
+                        fi
+                        echo ""
+                        echo -e "\033[1;32m Selecione um usuario para remover\033[0m"
+                        tail -n +2 /etc/openvpn/easy-rsa/pki/index.txt | grep "^V" | cut -d '=' -f 2 | nl -s ') '
+                        if [[ "$NUMBEROFCLIENTS" = '1' ]]; then
+                                read -p "Selecione um usuario [1]: " CLIENTNUMBER
+                        else
+                                read -p "Selecione um usuario [1-$NUMBEROFCLIENTS]: " CLIENTNUMBER
+                        fi
+                        CLIENT=$(tail -n +2 /etc/openvpn/easy-rsa/pki/index.txt | grep "^V" | cut -d '=' -f 2 | sed -n "$CLIENTNUMBER"p)
+
+
+echo ""
+read -p " Deseja Revover o Usuario $CLIENT ? [s/n] " -e -i n CONFIRMACAO
+echo ""
+if [[ "$CONFIRMACAO" = 's' ]]; then
+echo ""
+else
+echo "
+ Remoção abordada!
+"
+exit
+fi
+                        rm *$CLIENT.ovpn
+                        cd /etc/openvpn/easy-rsa/
+                        ./easyrsa --batch revoke $CLIENT
+                        ./easyrsa gen-crl
+                        rm -rf pki/reqs/$CLIENT.req
+                        rm -rf pki/private/$CLIENT.key
+                        rm -rf pki/issued/$CLIENT.crt
+                        rm -rf /etc/openvpn/crl.pem
+                        cp /etc/openvpn/easy-rsa/pki/crl.pem /etc/openvpn/crl.pem
+                        # CRL is read with each client connection, when OpenVPN is dropped to nobody
+                        chown nobody:$GROUPNAME /etc/openvpn/crl.pem
+                        rm /etc/datexp.old
+                        echo -e "
+\033[1;32m Usuario \033[1;36m$CLIENT\033[1;32m removido\033[0m
+"
