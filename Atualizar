@@ -3,7 +3,7 @@ clear
 echo " "
 echo -e " \033[44;1;37m O que vc deseja Atualizar ?\033[0m
 
-\033[1;32m  1) Atualizar OpenVPN
+\033[1;32m  1) Atualizar VpsPack
   2) Atualizar Configurações
   3) Atualizar Tudo\033[0m"
 echo " "
@@ -13,8 +13,9 @@ echo "   Atualizando..."
 
 cd 
 if [ $option -eq 1 ]; then
-rm OpenVPN-pack 2> /dev/null
-wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/OpenVPN-pack && bash OpenVPN-pack
+rm VpsPack-install /dev/null 2>/dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/VpsPack-install && bash VpsPack-install
+rm VpsPack-install /dev/null 2>/dev/null
 clear
 echo " "
 echo -e "\033[0;32mOpenVPN Atualizado com Sucesso\033[0m"
@@ -24,6 +25,7 @@ fi
 if [ $option -eq 2 ]; then
 rm configuracao 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/configuracao && bash configuracao
+rm configuracao 2> /dev/null
 clear
 echo " "
 echo -e "\033[0;32mConfigurações Atualizadas com Sucesso\033[0m"
@@ -35,6 +37,8 @@ rm OpenVPN-pack 2> /dev/null
 rm configuracao 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/OpenVPN-pack && bash OpenVPN-pack
 wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/configuracao && bash configuracao
+rm OpenVPN-pack 2> /dev/null 
+rm configuracao 2> /dev/null
 clear
 echo " "
 echo -e "\033[0;32mVps Atualizado com Sucesso\033[0m"
