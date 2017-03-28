@@ -6,7 +6,6 @@ then
 	echo -e "\033[1;32mSenha para o usuario $name:\033[0;37m"; read -p " " pass
 	echo -e "\033[1;32mQuantos dias usuario $name deve durar:\033[0;37m"; read -p " " daysrnf
         echo -e "\033[1;32mLimite de Conexoes para $name: \033[0;37m"; read -p " " num
-limit $name $num
 	echo -e "\033[0m"
        if cat /etc/passwd |grep $name: |grep -vi [a-z]$name |grep -v [0-9]$name > /dev/null
 	then
@@ -16,6 +15,7 @@ limit $name $num
 		datexp=$(date "+%d/%m/%Y" -d "+ $daysrnf days")
 		useradd -M -s /bin/false $name -e $valid
 		(echo $pass; echo $pass)|passwd $name 2>/dev/null
+                limit $name $num
 clear
                 echo -e "\033[1;32m################################\033[0m"
                 echo -e "\033[1;36m                        \033[0m"
