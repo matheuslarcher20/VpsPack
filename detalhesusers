@@ -26,7 +26,7 @@ usertotal=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep
 calculo=$(ps x | grep "sshd:" |grep "priv" |grep -vi root |wc -l)
 if (cat /etc/openvpn/openvpn-status.log > /dev/null 2> /dev/null)
 then
-usersvpn=$(cat /etc/openvpn/openvpn-status.log | grep 10.8 | cut -d "," -f 2)
+usersvpn=$(cat /etc/openvpn/openvpn-status.log |grep -w $users| grep 10.8 | awk -F , '{print $2}')
 calculovpn=$(cat /etc/openvpn/openvpn-status.log | grep 10.8 | cut -d "," -f 2 | wc -l)
 else
 usersvpn=''
@@ -84,7 +84,7 @@ senha=$(cat /etc/VpsPackdir/senha/$user)
 else
 senha="null"
 fi
-uservpn=$(cat /etc/openvpn/openvpn-status.log | grep 10.8 | cut -d "," -f 2)
+uservpn=$(cat /etc/openvpn/openvpn-status.log |grep -w $user| grep 10.8 | cut -d "," -f 2)
 usernum=$(ps -u $user |grep sshd |wc -l)
 updown=$(cat /etc/openvpn/openvpn-status.log | grep -vi 10.8 | grep -w $user | cut -d "," -f 3,4)
 ipvpn=$(cat /etc/openvpn/openvpn-status.log | grep 10.8 | grep -w $user | cut -d "," -f 1)
