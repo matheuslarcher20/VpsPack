@@ -38,3 +38,4 @@ done
 
 echo -e "\033[1;33mTotal: $usertotal     Online(SSH): \033[1;32m$calculo    \033[1;33mOnline(OpenVPN): \033[1;32m$calculovpn\033[0m
 "
+detalhesuser
