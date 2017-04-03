@@ -74,6 +74,7 @@ echo -e "\033[1;36m Status atual(OpenVPN): $status "
 echo -e "\033[1;36m Upload\Download: \033[2;37m$updown \033[0mBytes
 \033[1;36m IP virtual usuario: \033[2;37m$ipvpn
 \033[1;36m Online Desde: \033[2;37m$desde
+
 \033[1;36m IP do Servidor OpenVPN: \033[2;37m$IP
 \033[1;36m Porta OpenVPN: \033[2;37m443
 \033[1;36m IP do Servidor SSH: \033[2;37m$IP
