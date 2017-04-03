@@ -1,0 +1,1 @@
+while true; do cache-detalhesusers; sleep 40s; clear; done;
