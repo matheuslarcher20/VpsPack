@@ -26,24 +26,20 @@ fi
 read -p "opção: " option
 
 if [ $option -eq 1 ]; then
-read -p "Qual o novo limite de logins: " liml
-rm /etc/usuarios/$name.sh /dev/null 2>/dev/null
-rm /etc/tempo/$name.sh /dev/null 2>/dev/null
-limit $name $liml
-exit 0
+echo $name > "/etc/cache202.sh"
+UserRedefine.op1
+exit
 fi
 
 if [ $option -eq 2 ]; then
-echo $name >> "/etc/cache202.sh"
-cache201.sh
+echo $name > "/etc/cache202.sh"
+UserRedefine.op2
 exit
 fi
+
 if [ $option -eq 3 ]; then
-read -p "Qual a nova senha para $name: " senha
-(echo "$senha" ; echo "$senha" ) |passwd $name > /dev/null 2>/dev/null
-rm /etc/VpsPackdir/senha/$name /dev/null 2>/dev/null
-echo "$senha" > /etc/VpsPackdir/senha/$name
-echo "Nova senha aplicada"
+echo $name > "/etc/cache202.sh"
+UserRedefine.op3
 exit
 fi
 
