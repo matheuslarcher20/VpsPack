@@ -1,7 +1,7 @@
 #!/bin/bash
-read -p "Qual o novo limite de logins: " liml
 name=$(cat /etc/cache202.sh)
 rm /etc/cache202.sh
+read -p "Qual o novo limite de logins: " liml
 sizemaxnum=$(echo ${#liml})
 if [[ $sizemaxnum -gt 2 ]]
 then
@@ -11,7 +11,7 @@ exit
 else
 echo ""
 fi
-if (echo $num | egrep '[^0-9]' &> /dev/null)
+if (echo $liml | egrep '[^0-9]' &> /dev/null)
 then
 echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número de conexões inválido!\033[0m"
 exit
@@ -21,3 +21,4 @@ fi
 rm /etc/usuarios/$name.sh /dev/null 2>/dev/null
 rm /etc/tempo/$name.sh /dev/null 2>/dev/null
 limit $name $liml
+
