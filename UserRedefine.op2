@@ -3,6 +3,16 @@ name=$(cat /etc/cache202.sh)
 rm /etc/cache202.sh
 echo "Qual a nova data : formato AAAA/MM/DD"
  read -p ": " valid
+
+if (echo $valid | egrep '[^0-9/]' &> /dev/null)
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou uma data inválida!\033[0m"
+exit
+else
+echo ""
+fi
+
+
  date=$(echo $valid |awk -F / '{print $2}') 2>/dev/null
  if [[ "$date" = "" ]]
  then
