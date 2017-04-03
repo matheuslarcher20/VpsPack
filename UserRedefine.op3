@@ -1,16 +1,18 @@
 #!/bin/bash
+name=$(cat /etc/cache202.sh)
+rm /etc/cache202.sh
 read -p "Qual a nova senha para $name: " senha
-if (echo $pass | egrep '[^a-zA-Z0-9]' &> /dev/null)
+if (echo $senha | egrep '[^a-zA-Z0-9]' &> /dev/null)
 then
 echo -e "\033[1;31mErro!!\033[0;31m Você digitou uma senha inválida! \033[0m"
 exit
 else
 echo ""
 fi
-sizemaxpass=$(echo ${#pass})
+sizemaxpass=$(echo ${#senha})
 if [[ $sizemaxpass -gt 9 ]]
 then
-echo "\033[1;31mErro!! \033[0;31mVocê digitou uma senha muito grande,
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou uma senha muito grande,
  Use no máximo 9 caracteres!\033[0m"
 exit
 else
