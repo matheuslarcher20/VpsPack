@@ -1,0 +1,67 @@
+#!/bin/bash
+VALID=$(ps x | grep "sshd:" | grep pts | grep -vi color)
+if [[ $VALID = '' ]]; then
+echo ""
+exit
+else
+rm /etc/detalhesusers.cache.old > /dev/null 2> /dev/null
+fi
+echo "#!/bin/bash" >> /etc/detalhesusers.cache.old
+echo "clear" >> /etc/detalhesusers.cache.old
+echo 'echo -e "' >> /etc/detalhesusers.cache.old
+echo "-------------------------------------------------------
+ Usuario       Senha        Data E.       SSH      VPN
+-------------------------------------------------------" >> /etc/detalhesusers.cache.old
+
+for users in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn`
+do
+if cat /etc/VpsPackdir/limite/$users > /dev/null 2> /dev/null
+then
+limitecs=$(cat /etc/VpsPackdir/limite/$users)
+else
+limitecs="null"
+fi
+if (cat /etc/VpsPackdir/senha/$users > /dev/null 2> /dev/null)
+then
+senha=$(cat /etc/VpsPackdir/senha/$users)
+else
+senha="null"
+fi
+data=$(chage -l $users |grep -i co |awk -F : '{print $2}')
+if [ $data = never ] 2> /dev/null
+then
+date="Nunca"
+fi
+usertotal=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn| wc -l)
+calculo=$(ps x | grep "sshd:" |grep "priv" |grep -vi root |wc -l)
+if (cat /etc/openvpn/openvpn-status.log > /dev/null 2> /dev/null)
+then
+usersvpn=$(cat /etc/openvpn/openvpn-status.log |grep -w $users| grep 10.8 | awk -F , '{print $2}')
+calculovpn=$(cat /etc/openvpn/openvpn-status.log | grep 10.8 | cut -d "," -f 2 | wc -l)
+else
+usersvpn=''
+calculovpn=''
+fi
+usernum=$(ps -u $users |grep sshd |wc -l)
+detalhesdata=$(printf '%-14s' "$data")
+detalheslimit=$(printf '%-4s' "$limitecs")
+detalhes=$(printf ' %-13s' "$users")
+detalhespass=$(printf '%-11s' "$senha")
+
+if [[ $usersvpn = $users ]]; then
+status='\033[1;32mOn'
+else
+status='\033[1;31mOff'
+fi
+if [ $usernum -eq 0 ]; then
+echo "\033[1;33m$detalhes $detalhespass $detalhesdata \033[1;31m$usernum\033[2;37m \ \033[1;33m$detalheslimit $status\033[0m" >> /etc/detalhesusers.cache.old
+else
+echo "\033[1;33m$detalhes $detalhespass $detalhesdata \033[1;32m$usernum\033[2;37m \ \033[1;33m$detalheslimit $status\033[0m" >> /etc/detalhesusers.cache.old
+fi
+echo "\033[1;30m-------------------------------------------------------\033[0m" >> /etc/detalhesusers.cache.old
+done
+echo "\033[1;33mTotal: $usertotal     Online(SSH): \033[1;32m$calculo    \033[1;33mOnline(OpenVPN): \033[1;32m$calculovpn\033[0m" >> /etc/detalhesusers.cache.old
+data=$(date "+%d/%m/%Y %T")
+echo "Ultima atualizacao: $data" >> /etc/detalhesusers.cache.old
+echo '"' >> /etc/detalhesusers.cache.old
+cp /etc/detalhesusers.cache.old /etc/detalhesusers.cache
