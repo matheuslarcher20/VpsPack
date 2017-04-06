@@ -1,3 +1,4 @@
+#!/bin/bash
 read -p "Qual usuario vc deseja ver detalhes? " user
 nomer=$(cat /etc/passwd |grep $user: |grep -vi [a-z]$user |grep -v [0-9]$user |awk -F : '{print $7}')
 if [[ "$nomer" = "/bin/false" ]]
@@ -31,9 +32,32 @@ senha=$(cat /etc/VpsPackdir/senha/$user)
 else
 senha="null"
 fi
+num=$(cat /etc/openvpn/openvpn-status.log | grep -vi 10.8 | grep -w $user | cut -d "," -f 4|wc -c)
+num2=$(($num - 4))
+calculoKB=$(cat /etc/openvpn/openvpn-status.log | grep -vi 10.8 | grep -w $user | cut -d "," -f 4|cut -c1-$num2)
+if [[ $num2 -gt 3 ]]
+then
+num3=$(echo $calculoKB|wc -c)
+num4=$(($num3 - 4))
+calculoMB=$(cat /etc/openvpn/openvpn-status.log | grep -vi 10.8 | grep -w $user | cut -d "," -f 4|cut -c1-$num4)
+down=$(echo $calculoMB MB)
+else
+down=$(echo $calculoKB KB)
+fi
+num10=$(cat /etc/openvpn/openvpn-status.log | grep -vi 10.8 | grep -w $user | cut -d "," -f 3|wc -c)
+num20=$(($num10 - 4))
+UcalculoKB=$(cat /etc/openvpn/openvpn-status.log | grep -vi 10.8 | grep -w $user | cut -d "," -f 3|cut -c1-$num20)
+if [[ $num20 -gt 3 ]]
+then
+num30=$(echo $UcalculoKB|wc -c)
+num40=$(($num30 - 4))
+UcalculoMB=$(cat /etc/openvpn/openvpn-status.log | grep -vi 10.8 | grep -w $user | cut -d "," -f 3|cut -c1-$num40)
+up=$(echo $UcalculoMB MB)
+else
+up=$(echo $UcalculoKB KB)
+fi
 uservpn=$(cat /etc/openvpn/openvpn-status.log |grep -w $user| grep 10.8 | cut -d "," -f 2)
 usernum=$(ps -u $user |grep sshd |wc -l)
-updown=$(cat /etc/openvpn/openvpn-status.log | grep -vi 10.8 | grep -w $user | cut -d "," -f 3,4)
 ipvpn=$(cat /etc/openvpn/openvpn-status.log | grep 10.8 | grep -w $user | cut -d "," -f 1)
 desde=$(cat /etc/openvpn/openvpn-status.log | grep -vi 10.8 | grep -w $user | cut -d "," -f 5)
 data1=$(cat "/etc/VpsPackdir/date/$user" |awk -F / '{print $1}')
@@ -44,12 +68,29 @@ status='\033[1;32mOnline'
 else
 status='\033[1;31mOffline'
 fi
-if [[ $updown = "" ]]; then
-updown=0,0
+if [[ $down = "" ]]; then
+down=$(0 Bytes)
+up=$(0 Bytes)
 echo ""
 else
 echo ""
 fi
+IPPORT1=$(cat /etc/squid3/squid.conf |grep -w "http_port" |awk '{print $2}' |head -1 |tail -1)
+IPPORT2=$(cat /etc/squid3/squid.conf |grep -w "http_port" |awk '{print $2}' |head -2|tail -1)
+IPPORT3=$(cat /etc/squid3/squid.conf |grep -w "http_port" |awk '{print $2}' |head -3|tail -1)
+IPPORT4=$(cat /etc/squid3/squid.conf |grep -w "http_port" |awk '{print $2}' |head -4|tail -1)
+#IPPORT5=$(cat /etc/squid3/squid.conf |grep -w "http_port" |awk '{print $2}' |head -5|tail -1)
+#IPPORT6=$(cat /etc/squid3/squid.conf |grep -w "http_port" |awk '{print $2}' |head -6|tail -1)
+#IPPORT7=$(cat /etc/squid3/squid.conf |grep -w "http_port" |awk '{print $2}' |head -7|tail -1)
+#IPPORT8=$(cat /etc/squid3/squid.conf |grep -w "http_port" |awk '{print $2}' |head -8|tail -1)
+IPSSHPORT1=$(cat /etc/ssh/sshd_config |grep -w "Port" |awk '{print $2}' |head -1 |tail -1)
+#IPSSHPORT2=$(cat /etc/ssh/sshd_config |grep -w "Port" |awk '{print $2}' |head -2|tail -1)
+#IPSSHPORT3=$(cat /etc/ssh/sshd_config |grep -w "Port" |awk '{print $2}' |head -3|tail -1)
+#IPSSHPORT4=$(cat /etc/ssh/sshd_config |grep -w "Port" |awk '{print $2}' |head -4|tail -1)
+IPVPNPORT1=$(cat /etc/openvpn/server.conf |grep -w "port" |awk '{print $2}' |head -1 |tail -1)
+#IPVPNPORT2=$(cat /etc/openvpn/server.conf |grep -w "port" |awk '{print $2}' |head -2 |tail -1)
+#IPVPNPORT3=$(cat /etc/openvpn/server.conf |grep -w "port" |awk '{print $2}' |head -3 |tail -1)
+#IPVPNPORT4=$(cat /etc/openvpn/server.conf |grep -w "port" |awk '{print $2}' |head -4 |tail -1)
 clear
 echo -e "\033[1;32m#############################################"
 echo -e "
@@ -69,17 +110,18 @@ echo -e "
 \033[1;36m Numero Conexoes Online: \033[1;32m$usernum
 "
 fi
-echo -e "\033[1;36m Status atual(OpenVPN): $status "
-echo -e "\033[1;36m Upload\Download: \033[2;37m$updown \033[0mBytes
-\033[1;36m IP virtual usuario: \033[2;37m$ipvpn
+echo -e "\033[1;36m Status atual(OpenVPN): $status
 \033[1;36m Online Desde: \033[2;37m$desde
+\033[1;36m IP virtual usuario: \033[2;37m$ipvpn
+\033[1;36m Download: \033[2;37m$down
+\033[1;36m Upload: \033[2;37m$up
 
 \033[1;36m IP do Servidor OpenVPN: \033[2;37m$IP
-\033[1;36m Porta OpenVPN: \033[2;37m443
+\033[1;36m Porta OpenVPN: \033[2;37m$IPVPNPORT1 $IPVPNPORT2 $IPVPNPORT3 $IPVPNPORT4
 \033[1;36m IP do Servidor SSH: \033[2;37m$IP
-\033[1;36m Porta SSH: \033[2;37m22 \033[1;36m
+\033[1;36m Porta SSH: \033[2;37m$IPSSHPORT1 $IPSSHPORT2 $IPSSHPORT3 $IPSSHPORT4
 \033[1;36m IP da Proxy: \033[2;37m$IP
-\033[1;36m Porta Proxy: \033[2;37m80 \033[1;36mou \033[2;37m8080 \033[1;36mou \033[2;37m3128 \033[1;36mou \033[2;37m8799
+\033[1;36m Porta Proxy: \033[2;37m$IPPORT1 $IPPORT2 $IPPORT3 $IPPORT4 $IPPORT5 $IPPORT6 $IPPORT7 $IPPORT8
 "
 echo -e "\033[1;32m#############################################\033[1;0m"
 echo "
