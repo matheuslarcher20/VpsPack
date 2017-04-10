@@ -29,9 +29,19 @@ else
 senha="null"
 fi
 data=$(chage -l $users |grep -i co |awk -F : '{print $2}')
-if [ $data = never ] 2> /dev/null
+dataxp=$(cat /etc/expireduser.txt |grep -w $users |awk '{print $3}')
+data7xp=$(cat /etc/infouser.txt |grep -w $users |awk '{print $3}')
+if [[ $data7xp = $users ]]
 then
-date="Nunca"
+data="\033[0;33m$data"
+fi
+if [[ $dataxp = $users ]]
+then
+data="\033[0;31m$data"
+fi
+if [[ $data = never ]] 2> /dev/null
+then
+data="Nunca"
 fi
 usertotal=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn| wc -l)
 calculo=$(ps x | grep "sshd:" |grep "priv" |grep -vi root |wc -l)
