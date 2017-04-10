@@ -73,6 +73,8 @@ echo "\033[1;30m-------------------------------------------------------\033[0m" 
 done
 echo "\033[1;33mTotal: $usertotal     Online(SSH): \033[1;32m$calculo    \033[1;33mOnline(OpenVPN): \033[1;32m$calculovpn\033[0m" >> /etc/detalhesusers.cache.old
 data=$(date "+%d/%m/%Y %T")
+datacache=$(date "+%s")
 echo "Ultima atualizacao: $data" >> /etc/detalhesusers.cache.old
 echo '"' >> /etc/detalhesusers.cache.old
 cp /etc/detalhesusers.cache.old /etc/detalhesusers.cache
+echo "$datacache" > /etc/data.cache
