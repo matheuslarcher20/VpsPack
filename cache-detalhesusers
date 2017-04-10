@@ -6,6 +6,7 @@ exit
 else
 rm /etc/detalhesusers.cache.old > /dev/null 2> /dev/null
 fi
+detalhesusers.xp > /dev/null 2> /dev/null
 echo "#!/bin/bash" >> /etc/detalhesusers.cache.old
 echo "clear" >> /etc/detalhesusers.cache.old
 echo 'echo -e "' >> /etc/detalhesusers.cache.old
