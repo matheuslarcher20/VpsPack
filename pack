@@ -9,12 +9,8 @@ read -p ": " opcao
 case $opcao in
  1)
   bash criar
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  pack;;
  2)
   bash apagar
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  pack;;
   *)
   id > /dev/null 2> /dev/null
 esac
