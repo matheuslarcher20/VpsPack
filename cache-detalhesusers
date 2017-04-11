@@ -1,4 +1,5 @@
 #!/bin/bash
+bash criar-apagar
 VALID=$(ps x | grep "sshd:" | grep pts | grep -vi color)
 if [[ $VALID = '' ]]; then
 echo ""
