@@ -1,16 +1,14 @@
 clear
-cd 
+cd
 echo -e "\033[1;37m VpsPacket © Script criado por: \033[2;32mMatheus Larcher \033[0m"
 echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\033[1;34m
 [1] criar \033[2;36m(Criar usuarios para SSH e OpenVPN)\033[1;34m
 [2] apagar \033[2;36m(apagar usuario)\033[0m"
-read -p ": " opcao
+read -p ": " option
 
-case $opcao in
- 1)
-  bash criar
- 2)
-  bash apagar
-  *)
-  id > /dev/null 2> /dev/null
-esac
+if [ $option -eq 1 ]; then
+bash criar
+fi
+if [ $option -eq 2 ]; then
+bash apagar
+fi
