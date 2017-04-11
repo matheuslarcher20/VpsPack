@@ -29,6 +29,7 @@ echo "
 exit
 fi
 echo "$CLIENT" >> /clientes/apagar
+sed -i /^$CLIENT/d usuarios.txt
 echo -e "
-\033[1;32m Usuario \033[1;36m$CLIENT\033[1;32m Será removido em até 2 minutos\033[0m
+\033[1;32m Usuario \033[1;36m$CLIENT\033[1;32m Será removido em 1 minuto\033[0m
 "
