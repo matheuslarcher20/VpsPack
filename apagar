@@ -1,0 +1,34 @@
+#!/bin/bash
+cd
+NUMBEROFCLIENTS=$(cat usuarios.txt|wc -l)
+                        if [[ "$NUMBEROFCLIENTS" = '0' ]]; then
+                                echo ""
+                                echo -e "\033[1;31mVocê não tem usuarios existentes!\033[0m"
+                                exit 6
+                        fi
+                        echo ""
+                        echo -e "\033[1;32m Selecione um usuario para remover\033[0m"
+                        tail -n +2 usuarios.txt | nl -s ') '
+                        if [[ "$NUMBEROFCLIENTS" = '1' ]]; then
+                                read -p "Selecione um usuario [1]: " CLIENTNUMBER
+                        else
+                                read -p "Selecione um usuario [1-$NUMBEROFCLIENTS]: " CLIENTNUMBER
+                        fi
+                        CLIENT=$(tail -n +2 usuarios.txt | sed -n "$CLIENTNUMBER"p)
+
+
+echo ""
+read -p " Deseja Revover o Usuario $CLIENT ? [s/n] " -e -i n CONFIRMACAO
+echo ""
+if [[ "$CONFIRMACAO" = 's' ]]; then
+echo ""
+else
+echo "
+ Remoção abordada!
+"
+exit
+fi
+echo "$CLIENT" >> /clientes/apagar
+echo -e "
+\033[1;32m Usuario \033[1;36m$CLIENT\033[1;32m Será removido em até 10 minutos\033[0m
+"
