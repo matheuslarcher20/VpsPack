@@ -18,20 +18,3 @@ limite=$(grep -w $user |awk -F : '{print $3}')
 done
 rm -r /clientes/criar > /dev/null 2> /dev/null
 fi
-
-if [ -d /clientes/apagar ]
-then
-echo ""
-else
-for name in `cat /clientes/apagar|awk -F : '{print $1}'`
-do
- userdel --force $name > /dev/null 2>/dev/null
- rm /etc/usuarios/$name.sh /dev/null 2>/dev/null
- rm /etc/tempo/$name.sh /dev/null 2>/dev/null
- rm /etc/VpsPackdir/limite/$name /dev/null 2>/dev/null
- rm /etc/VpsPackdir/senha/$name /dev/null 2>/dev/null
- rm /etc/VpsPackdir/date/$name /dev/null 2>/dev/null
- kill -9 `ps aux |grep -vi '[a-z]$name' |grep -vi '$name[a-z]' |grep -v '[1-9]$name' |grep -v '$name[1-9]' |grep $name |awk {'print $2'}` 2> /dev/null
-done
-rm -r /clientes/apagar > /dev/null 2> /dev/null
-fi
