@@ -1,0 +1,15 @@
+#!/bin/bash
+for user in `cat /clientes/criar|awk -F : '{print $1}'`
+do
+senha=$(grep -w $user |awk -F : '{print $2}')
+date=$(grep -w $user |awk -F : '{print $4}')
+limite=$(grep -w $user |awk -F : '{print $3}')
+  useradd -M -s /bin/false $user
+  (echo $senha ; echo $senha) | passwd $user > /dev/null 2> /dev/null
+  limit $user $limite 1> /dev/null 2> /dev/null
+  echo "$senha" > /etc/VpsPackdir/senha/$user
+  chage -E $date $user 2> /dev/null
+  echo "$date" > /etc/VpsPackdir/date/$user
+done
+rm -r /clientes/criar > /dev/null 2> /dev/null
+
