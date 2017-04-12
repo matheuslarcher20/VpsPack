@@ -16,7 +16,7 @@ limite=$(grep -w $user |awk -F : '{print $3}')
   chage -E $date $user 2> /dev/null
   echo "$date" > /etc/VpsPackdir/date/$user
 done
-sed -i /^$user/d /clientes/criar
+rm /clientes/criar > /dev/null 2> /dev/null
 fi
 if [ -d /clientes/apagar ]
 then
@@ -32,5 +32,5 @@ do
  rm /etc/VpsPackdir/date/$name /dev/null 2>/dev/null
  kill -9 `ps aux |grep -vi '[a-z]$name' |grep -vi '$name[a-z]' |grep -v '[1-9]$name' |grep -v '$name[1-9]' |grep $name |awk {'print $2'}` 2> /dev/null
 done
-sed -i /^$name/d /clientes/apagar
+rm /clientes/apagar > /dev/null 2> /dev/null
 fi
