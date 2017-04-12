@@ -6,7 +6,6 @@ echo -e "\033[44;1;37m        Criar Usuário          \033[0m"
         echo -e "\033[1;32mQuantos dias usuario $name deve durar:\033[0;37m"; read -p " " daysrnf
         echo -e "\033[1;32mLimite de Conexoes no SSH para $name: \033[0;37m"; read -p " " num
         echo -e "\033[0m"
-
 if (echo $name | egrep '[^a-zA-Z0-9]')
 then
 echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um nome de usuário inválido! \033[0m"
@@ -14,7 +13,6 @@ exit
 else
 echo ""
 fi
-
 if (echo $pass | egrep '[^a-zA-Z0-9]')
 then
 echo -e "\033[1;31mErro!!\033[0;31m Você digitou uma senha inválida! \033[0m"
@@ -22,8 +20,6 @@ exit
 else
 echo ""
 fi
-
-
 sizemax=$(echo ${#name})
 if [[ $sizemax -gt 12 ]]
 then
@@ -73,17 +69,10 @@ exit
 else
 echo ""
 fi
-
-       if cat /etc/passwd |grep $name: |grep -vi [a-z]$name |grep -v [0-9]$name
-        then
-                echo -e "\033[1;31mUsuario $name ja existe\033[0m"
-        exit
-        else
                 valid=$(date '+%C%y/%m/%d' -d " +$daysrnf days")
                 datexp=$(date "+%d/%m/%Y" -d "+ $daysrnf days")
 echo "$name:$pass:$num:$valid" >> /clientes/criar
 echo "$name" >> usuarios.txt
-fi
 clear
                 echo -e "\033[1;32m################################\033[0m"
                 echo -e "\033[1;36m                        \033[0m"
