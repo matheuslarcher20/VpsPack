@@ -8,13 +8,13 @@ NUMBEROFCLIENTS=$(cat usuarios.txt|wc -l)
                         fi
                         echo ""
                         echo -e "\033[1;32m Selecione um usuario para remover\033[0m"
-                        tail -n +2 usuarios.txt | nl -s ') '
+                        cat usuarios.txt | nl -s ') '
                         if [[ "$NUMBEROFCLIENTS" = '1' ]]; then
                                 read -p "Selecione um usuario [1]: " CLIENTNUMBER
                         else
                                 read -p "Selecione um usuario [1-$NUMBEROFCLIENTS]: " CLIENTNUMBER
                         fi
-                        CLIENT=$(tail -n +2 usuarios.txt | sed -n "$CLIENTNUMBER"p)
+                        CLIENT=$(cat usuarios.txt | sed -n "$CLIENTNUMBER"p)
 if (echo $CLIENTNUMBER | egrep '[^0-9]')
 then
 echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
