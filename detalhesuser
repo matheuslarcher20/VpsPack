@@ -75,6 +75,10 @@ echo ""
 else
 echo ""
 fi
+ADM=$(cat /etc/VpsPackdir/UsuariosADM/$user|awk '{print $1}')
+ADM1=$(cat /etc/VpsPackdir/UsuariosADM/$user|awk '{print $3}')
+ADM2=$(cat /etc/VpsPackdir/UsuariosADM/$user|awk '{print $4}')
+ADM3=$(cat /etc/VpsPackdir/UsuariosADM/$user|awk '{print $5}')
 IPPORT1=$(cat /etc/squid3/squid.conf |grep -w "http_port" |awk '{print $2}' |head -1 |tail -1)
 IPPORT2=$(cat /etc/squid3/squid.conf |grep -w "http_port" |awk '{print $2}' |head -2|tail -1)
 IPPORT3=$(cat /etc/squid3/squid.conf |grep -w "http_port" |awk '{print $2}' |head -3|tail -1)
@@ -122,6 +126,10 @@ echo -e "\033[1;36m Status atual(OpenVPN): $status
 \033[1;36m Porta SSH: \033[2;37m$IPSSHPORT1 $IPSSHPORT2 $IPSSHPORT3 $IPSSHPORT4
 \033[1;36m IP da Proxy: \033[2;37m$IP
 \033[1;36m Porta Proxy: \033[2;37m$IPPORT1 $IPPORT2 $IPPORT3 $IPPORT4 $IPPORT5 $IPPORT6 $IPPORT7 $IPPORT8
+
+\033[1;36m Criado por: \033[2;37m$ADM
+\033[1;36m Data de Criação: \033[2;37m$ADM1 $ADM2
+\033[1;36m Ip do criador: \033[2;37m$ADM3
 "
 echo -e "\033[1;32m#############################################\033[1;0m"
 echo "
