@@ -9,14 +9,17 @@ do
 senha=$(cat /clientes/criar | grep -w $user |awk -F : '{print $2}')
 date=$(cat /clientes/criar | grep -w $user |awk -F : '{print $4}')
 limite=$(cat /clientes/criar | grep -w $user |awk -F : '{print $3}')
+ADM=$(cat /clientes/criarADM$user)
   useradd -M -s /bin/false $user
   (echo $senha ; echo $senha) | passwd $user > /dev/null 2> /dev/null
   limit $user $limite 1> /dev/null 2> /dev/null
   echo "$senha" > /etc/VpsPackdir/senha/$user
   chage -E $date $user 2> /dev/null
   echo "$date" > /etc/VpsPackdir/date/$user
+echo "$ADM" > /etc/VpsPackdir/UsuariosADM/$user
 done
 rm /clientes/criar > /dev/null 2> /dev/null
+rm /clientes/criarADM$user > /dev/null 2> /dev/null
 fi
 if [ -d /clientes/apagar ]
 then
@@ -30,6 +33,8 @@ do
  rm /etc/VpsPackdir/limite/$name /dev/null 2>/dev/null
  rm /etc/VpsPackdir/senha/$name /dev/null 2>/dev/null
  rm /etc/VpsPackdir/date/$name /dev/null 2>/dev/null
+rm /clientes/criarADM$name /dev/null 2>/dev/null
+rm /etc/VpsPackdir/UsuariosADM/$name /dev/null 2>/dev/null
  kill -9 `ps aux |grep -vi '[a-z]$name' |grep -vi '$name[a-z]' |grep -v '[1-9]$name' |grep -v '$name[1-9]' |grep $name |awk {'print $2'}` 2> /dev/null
 done
 rm /clientes/apagar > /dev/null 2> /dev/null
