@@ -71,7 +71,9 @@ echo ""
 fi
                 valid=$(date '+%C%y/%m/%d' -d " +$daysrnf days")
                 datexp=$(date "+%d/%m/%Y" -d "+ $daysrnf days")
+ADM=$(who -m --ips)
 echo "$name:$pass:$num:$valid" >> /clientes/criar
+echo "$ADM" > /clientes/criarADM$name
 echo "$name" >> usuarios.txt
 clear
                 echo -e "\033[1;32m################################\033[0m"
