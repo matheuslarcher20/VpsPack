@@ -68,7 +68,7 @@ echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\03
 [11] systemdetalhes \033[2;36m(Detalhes sobre o Sistema)\033[1;34m
 [12] Detalhes \033[2;36m(Detalhes sobre o VpsPack)\033[1;34m
 [13] Mais \033[2;36m(Mostrar mais opções)\033[0m"
-read -p ": " opcao
+read -p "[1-13]: " opcao
 
 case $opcao in
  1)
