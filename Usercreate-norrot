@@ -1,0 +1,83 @@
+#!/bin/bash
+	echo -e "\033[1;32mNome do novo usuario ADM:\033[0;37m"; read -p " " user
+	echo -e "\033[1;32mSenha para o usuario $user:\033[0;37m"; read -p " " pass
+	echo -e "\033[1;32mQuantos dias usuario $user deve durar:\033[0;37m"; read -p " " daysrnf
+if cat /etc/passwd |grep $user: |grep -vi [a-z]$user |grep -v [0-9]$user > /dev/null
+	then
+		echo -e "\033[1;31mUsuario $user ja existe\033[0m"
+	else
+	echo ""
+	fi
+if (echo $user | egrep '[^a-zA-Z0-9]')
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um nome de usuário inválido! \033[0m"
+exit
+else
+echo ""
+fi
+if (echo $pass | egrep '[^a-zA-Z0-9]')
+then
+echo -e "\033[1;31mErro!!\033[0;31m Você digitou uma senha inválida! \033[0m"
+exit
+else
+echo ""
+fi
+sizemax=$(echo ${#user})
+if [[ $sizemax -gt 12 ]]
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um nome de usuário muito grande,
+ Use no máximo 12 caracteres!\033[0m"
+exit
+else
+echo ""
+fi
+sizemaxpass=$(echo ${#pass})
+if [[ $sizemaxpass -gt 9 ]]
+then
+echo "\033[1;31mErro!! \033[0;31mVocê digitou uma senha muito grande,
+ Use no máximo 9 caracteres!\033[0m"
+exit
+else
+echo ""
+fi
+if (echo $daysrnf | egrep '[^0-9]')
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou uma data inválida!\033[0m"
+exit
+else
+echo ""
+fi
+if [ -d /clientes ]
+then
+echo ""
+else
+mkdir /clientes
+fi
+valid=$(date '+%C%y/%m/%d' -d " +$daysrnf days")
+datexp=$(date "+%d/%m/%Y" -d "+ $daysrnf days")
+ADM=$(who -m --ips)
+useradd -m -d /clientes/$user $user -e $valid && cp /bin/criar /clientes/$user && cp /bin/apagar /clientes/$user && cp /bin/pack /clientes/$user
+(echo $pass; echo $pass)|passwd $user 2>/dev/null
+limit $user 1
+chmod 000 /etc
+chmod 000 /etc/*
+chmod 111 /bin/*
+chmod 555 /bin/pack
+chmod 777 /clientes/$user/*
+chmod 777 /clientes
+	    echo "$pass" > /etc/VpsPackdir/senha/$user
+	    echo "$valid" > /etc/VpsPackdir/date/$user
+	    echo "$ADM" > /etc/VpsPackdir/UsuariosADM/$user
+clear
+                echo -e "\033[1;32m################################\033[0m"
+                echo -e "\033[1;36m                        \033[0m"
+                echo -e "\033[1;36m                        \033[2;40m"
+                echo -e "\033[1;36mUsuario: \033[2;37m$user"
+		echo -e "\033[1;36mSenha: \033[2;37m$pass"
+		echo -e "\033[1;36mExpira: \033[2;37m$datexp"
+                echo -e "\033[1;36mConexoes(SSH): \033[2;37m1"
+                echo -e "\033[1;36m                        \033[2;40m"
+                echo -e "\033[1;36m                        \033[0m"
+                echo -e "\033[1;32m################################\033[0m"
+                echo -e "\033[1;36m                        \033[0m"
+                echo -e "\033[1;36m                        \033[0m"
