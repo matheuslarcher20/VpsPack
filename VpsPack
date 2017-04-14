@@ -92,7 +92,6 @@ case $opcao in
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  6)
- # read -p "Em qual diretorio esta o arquivo de Backup: " arq
   restusers
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
