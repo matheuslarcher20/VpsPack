@@ -6,10 +6,9 @@ echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\03
 [5] desblock \033[2;36m(Desbloquear um determinado IP)\033[1;34m
 [6] add-host \033[2;36m(Adicionar um host)\033[1;34m
 [7] BadVpn \033[2;36m(Instalar BadVpn para abilitar chamadas de voz e video)\033[1;34m
-[8] OpenVPN-install \033[2;36m(Instalar OpenVPN)\033[1;34m
-[9] CrtCreate \033[2;36m(Criar arquivo com certificado OpenVPN)\033[1;34m
-[10] CrtDel \033[2;36m(Apagar certificado OpenVPN)\033[1;34m
-[11] Atualizar \033[2;36m(Atualizar VpsPack e Configurações)\033[1;34m"
+[8] CrtCreate \033[2;36m(Criar arquivo com certificado OpenVPN)\033[1;34m
+[9] CrtDel \033[2;36m(Apagar certificado OpenVPN)\033[1;34m
+[10] Atualizar \033[2;36m(Atualizar VpsPack e Configurações)\033[1;34m"
 read -p "[1-11]: " opcao
 
 case $opcao in
@@ -41,19 +40,15 @@ case $opcao in
   BadVpn
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
- 8)
-  OpenVPN-install
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
- 9)
+  8)
   CrtCreate
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
- 10)
+ 9)
   CrtDel
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
- 11)
+ 10)
   Atualizar
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
