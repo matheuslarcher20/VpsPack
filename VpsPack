@@ -61,12 +61,13 @@ echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\03
 [4] ResetFirewall \033[2;36m(Retira todas as regras iptables [RISCOS])\033[1;34m
 [5] backupusers \033[2;36m(Backup dos usuarios para reinstalação futura)\033[1;34m
 [6] restusers \033[2;36m(Restaurar usuarios feito backup)\033[1;34m
-[7] detalhesusers \033[2;36m(Mostra informações de todos os usuarios !!)\033[1;34m
-[8] banner \033[2;36m(Banner mensagem no ssh)\033[1;34m
-[9] speedtest \033[2;36m(Teste de conexão [velocidade de banda])\033[1;34m
-[10] systemdetalhes \033[2;36m(Detalhes sobre o Sistema)\033[1;34m
-[11] Detalhes \033[2;36m(Detalhes sobre o VpsPack)\033[1;34m
-[12] Atualizar \033[2;36m(Remover o VpsPack)\033[0m"
+[7] detalhesuser \033[2;36m(Mostra informações de um unico usuario !!)\033[1;34m
+[8] detalhesusers \033[2;36m(Mostra informações de todos os usuarios !!)\033[1;34m
+[9] banner \033[2;36m(Banner mensagem no ssh)\033[1;34m
+[10] speedtest \033[2;36m(Teste de conexão [velocidade de banda])\033[1;34m
+[11] systemdetalhes \033[2;36m(Detalhes sobre o Sistema)\033[1;34m
+[12] Detalhes \033[2;36m(Detalhes sobre o VpsPack)\033[1;34m
+[13] Atualizar \033[2;36m(Remover o VpsPack)\033[0m"
 read -p ": " opcao
 
 case $opcao in
@@ -96,26 +97,30 @@ case $opcao in
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  7)
-  detalhesusers
+  detalhesuser
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  8)
-  banner
+  detalhesusers
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  9)
-  speedtest
+  banner
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  10)
-  systemdetalhes
+  speedtest
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  11)
-  Detalhes
+  systemdetalhes
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  12)
+  Detalhes
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+ 13)
   Atualizar
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
