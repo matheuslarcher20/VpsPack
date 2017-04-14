@@ -16,8 +16,26 @@
                                 read -p "Selecione um usuario [1-$NUMBEROFCLIENTS]: " CLIENTNUMBER
                         fi
                         CLIENT=$(tail -n +2 /etc/openvpn/easy-rsa/pki/index.txt | grep "^V" | cut -d '=' -f 2 | sed -n "$CLIENTNUMBER"p)
-
-
+if (echo $CLIENTNUMBER | egrep '[^0-9]')
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
+exit
+else
+echo ""
+fi
+if [[ $CLIENTNUMBER -gt $NUMBEROFCLIENTS ]]
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
+exit
+else
+echo ""
+fi
+if [[ $CLIENTNUMBER -lt 1 ]]; then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
+exit
+else
+echo ""
+fi
 echo ""
 read -p " Deseja Revover o Usuario $CLIENT ? [s/n] " -e -i n CONFIRMACAO
 echo ""
