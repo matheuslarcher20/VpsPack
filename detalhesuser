@@ -1,15 +1,14 @@
 #!/bin/bash
-read -p "Qual usuario vc deseja ver detalhes? " user
+NUMBEROFCLIENTS=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn|sort| wc -l)
+awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn|sort |nl -s ") "
+ if [[ "$NUMBEROFCLIENTS" = '1' ]]; then
+ read -p "Selecione um usuario [1]: " CLIENTNUMBER
+ else
+ read -p "Selecione um usuario [1-$NUMBEROFCLIENTS]: " CLIENTNUMBER
+ fi
+user=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn|sort| sed -n "$CLIENTNUMBER"p)
+
 nomer=$(cat /etc/passwd |grep $user: |grep -vi [a-z]$user |grep -v [0-9]$user |awk -F : '{print $7}')
-if [[ "$nomer" = "/bin/false" ]]
-then
-echo " "
-else
-echo -e "
-\033[1;31m Usuario \033[0;31m$user\033[1;31m nao existe\033[0m"
-echo " "
-exit
-fi
 IP=$(wget -qO- ipv4.icanhazip.com)
 if [[ $user = "" ]]; then
 echo -e "
@@ -68,12 +67,12 @@ status='\033[1;32mOnline'
 else
 status='\033[1;31mOffline'
 fi
-if [[ $down = "" ]]; then
+if [[ $status = '\033[1;31mOffline' ]]; then
 down=$(0 Bytes)
 up=$(0 Bytes)
-echo ""
+echo "" > /dev/null
 else
-echo ""
+echo "" > /dev/null
 fi
 ADM=$(cat /etc/VpsPackdir/UsuariosADM/$user|awk '{print $1}')
 ADM1=$(cat /etc/VpsPackdir/UsuariosADM/$user|awk '{print $3}')
@@ -95,6 +94,12 @@ IPVPNPORT1=$(cat /etc/openvpn/server.conf |grep -w "port" |awk '{print $2}' |hea
 #IPVPNPORT2=$(cat /etc/openvpn/server.conf |grep -w "port" |awk '{print $2}' |head -2 |tail -1)
 #IPVPNPORT3=$(cat /etc/openvpn/server.conf |grep -w "port" |awk '{print $2}' |head -3 |tail -1)
 #IPVPNPORT4=$(cat /etc/openvpn/server.conf |grep -w "port" |awk '{print $2}' |head -4 |tail -1)
+if [[ "$nomer" = "/bin/false" ]]
+then
+echo "" > /dev/null
+else
+user="$user (Administrador)"
+fi
 clear
 echo -e "\033[1;32m#############################################"
 echo -e "
