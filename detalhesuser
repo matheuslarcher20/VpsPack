@@ -1,4 +1,10 @@
 #!/bin/bash
+NUMBEROFCLIENTS=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn|sort|wc -l)
+if [[ "$NUMBEROFCLIENTS" = '0' ]]; then
+echo ""
+echo -e "\033[1;31mVocê não tem usuarios existentes!\033[0m"
+exit 6
+fi
 NUMBEROFCLIENTS=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn|sort| wc -l)
 awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn|sort |nl -s ") "
  if [[ "$NUMBEROFCLIENTS" = '1' ]]; then
@@ -7,7 +13,26 @@ awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd
  read -p "Selecione um usuario [1-$NUMBEROFCLIENTS]: " CLIENTNUMBER
  fi
 user=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn|sort| sed -n "$CLIENTNUMBER"p)
-
+if (echo $CLIENTNUMBER | egrep '[^0-9]')
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
+exit
+else
+echo ""
+fi
+if [[ $CLIENTNUMBER -gt $NUMBEROFCLIENTS ]]
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
+exit
+else
+echo ""
+fi
+if [[ $CLIENTNUMBER -lt 1 ]]; then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
+exit
+else
+echo ""
+fi
 nomer=$(cat /etc/passwd |grep $user: |grep -vi [a-z]$user |grep -v [0-9]$user |awk -F : '{print $7}')
 IP=$(wget -qO- ipv4.icanhazip.com)
 if [[ $user = "" ]]; then
