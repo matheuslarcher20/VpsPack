@@ -9,7 +9,7 @@ echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\03
 [8] CrtCreate \033[2;36m(Criar arquivo com certificado OpenVPN)\033[1;34m
 [9] CrtDel \033[2;36m(Apagar certificado OpenVPN)\033[1;34m
 [10] Atualizar \033[2;36m(Atualizar VpsPack e Configurações)\033[0m"
-read -p "[1-11]: " opcao
+read -p "[1-10]: " opcao
 
 case $opcao in
  1)
