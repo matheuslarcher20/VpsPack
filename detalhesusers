@@ -1,12 +1,16 @@
+#!/bin/bash
 bash /etc/detalhesusers.cache
 data=$(date "+%s")
 datacache=$(cat /etc/data.cache)
 datareal=$(($data - $datacache))
 if [[ $datareal -gt 300 ]]
 then
-echo -e " \033[0;31mDetalhesusers Desatualizado!!
- Execute \033[1;31mcache-detalhesusers.install \033[0;31mem uma sessao \033[1;31mscreen!\033[0m
+echo -e " \033[0;31mDetalhesusers Desatualizado!! Execute \033[1;31mcache-detalhesusers.install \033[0;31mem uma sessao \033[1;31mscreen!\033[0m
+Abrindo detalhesusers...
+
 "
+cache-detalhesusers
+detalhesusers
 exit
 else
 echo "Ultima atualizacao: $data" >> /etc/detalhesusers.cache.old
