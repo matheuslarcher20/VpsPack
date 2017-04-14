@@ -67,7 +67,7 @@ echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\03
 [10] speedtest \033[2;36m(Teste de conexão [velocidade de banda])\033[1;34m
 [11] systemdetalhes \033[2;36m(Detalhes sobre o Sistema)\033[1;34m
 [12] Detalhes \033[2;36m(Detalhes sobre o VpsPack)\033[1;34m
-[13] Atualizar \033[2;36m(Remover o VpsPack)\033[0m"
+[13] Mais \033[2;36m(Mostrar mais opções)\033[0m"
 read -p ": " opcao
 
 case $opcao in
@@ -120,7 +120,7 @@ case $opcao in
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  13)
-  Atualizar
+  Mais
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  *)
