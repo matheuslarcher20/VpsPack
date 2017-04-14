@@ -46,6 +46,12 @@ else
 mkdir /etc/VpsPackdir/date
 fi
 
+if [ -d /etc/VpsPackdir/UsuariosADM ]
+then
+echo ""
+else
+mkdir /etc/VpsPackdir/UsuariosADM
+fi
 clear
 echo -e "\033[1;37m VpsPacket © Script criado por: \033[2;32mMatheus Larcher \033[0m"
 echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\033[1;34m
@@ -85,8 +91,8 @@ case $opcao in
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  6)
-  read -p "Em qual diretorio esta o arquivo de Backup: " arq
-  restusers $arq
+ # read -p "Em qual diretorio esta o arquivo de Backup: " arq
+  restusers
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  7)
