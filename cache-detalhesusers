@@ -1,5 +1,5 @@
 #!/bin/bash
-criar-apagar
+criar-apagar /dev/null 2>/dev/null
 VALID=$(ps x | grep "sshd:" | grep pts | grep -vi color)
 if [[ $VALID = '' ]]; then
 echo ""
