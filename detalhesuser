@@ -6,6 +6,7 @@ echo -e "\033[1;31mVocê não tem usuarios existentes!\033[0m"
 exit 6
 fi
 NUMBEROFCLIENTS=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn|sort| wc -l)
+echo -e "\033[44;1;37m      Ver Detalhes do Usuário       \033[0m"
 awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn|sort |nl -s ") "
  if [[ "$NUMBEROFCLIENTS" = '1' ]]; then
  read -p "Selecione um usuario [1]: " CLIENTNUMBER
