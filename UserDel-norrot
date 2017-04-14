@@ -1,7 +1,7 @@
 #!/bin/bash
 NUMBEROFCLIENTS=$(awk -F : '$3 > 900 ' /etc/passwd |grep -vi /bin/false|grep -vi "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]|awk -F : '{ print $1 }'|sort|wc -l)
 if [[ "$NUMBEROFCLIENTS" = '0' ]]; then
-echo ""
+echo "" 2 >/dev/null
 echo -e "\033[1;31mVocê não tem usuarios existentes!\033[0m"
 exit 6
 fi
@@ -17,28 +17,28 @@ then
 echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
 exit
 else
-echo ""
+echo "" 2 >/dev/null
 fi
 if [[ $CLIENTNUMBER -gt $NUMBEROFCLIENTS ]]
 then
 echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
 exit
 else
-echo ""
+echo "" 2 >/dev/null
 fi
 if [[ $CLIENTNUMBER -lt 1 ]]; then
 echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
 exit
 else
-echo ""
+echo "" 2 >/dev/null
 fi
-echo ""
+echo "" 2 >/dev/null
 read -p " Deseja Revover o Usuario $name ? [s/n] " -e -i n CONFIRMACAO
 echo ""
 if [[ "$CONFIRMACAO" = 's' ]]; then
-echo ""
+echo "" 2 >/dev/null
 else
-echo "
+echo " 
  Remoção abordada!
 "
 exit
@@ -51,13 +51,11 @@ fi
  rm /etc/VpsPackdir/date/$name /dev/null 2>/dev/null
 rm /etc/VpsPackdir/UsuariosADM/$name /dev/null 2>/dev/null
 kill -9 `ps aux |grep -vi '[a-z]$name' |grep -vi '$name[a-z]' |grep -v '[1-9]$name' |grep -v '$name[1-9]' |grep $name |awk {'print $2'}` 2> /dev/null
- read -p "Deseja apagar a pasta clientes do usuario $name ? [s/n] " resposta
+ echo " Usuario $name foi deletado e parado"
+read -p "Deseja apagar a pasta clientes do usuario $name ? [s/n] " resposta
 if [[ "$resposta" = 's' ]]; then
  rm -r /clientes/$name /dev/null 2>/dev/null
+ echo "Pasta /cliente/$name foi deletada"
  else
- echo ""
+ echo "" 2 >/dev/null
  fi 
- echo "Usuario $name foi deletado e parado"
-
-
-
