@@ -1,5 +1,5 @@
 #!/bin/bash
-NUMBEROFCLIENTS=$(awk -F : '$3 > 900 ' /etc/passwd |grep -vi /bin/false|grep -vi "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]|awk -F : '{ print $1 }'|sort)
+NUMBEROFCLIENTS=$(awk -F : '$3 > 900 ' /etc/passwd |grep -vi /bin/false|grep -vi "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]|awk -F : '{ print $1 }'|sort|wc -l)
 if [[ "$NUMBEROFCLIENTS" = '0' ]]; then
 echo ""
 echo -e "\033[1;31mVocê não tem usuarios existentes!\033[0m"
