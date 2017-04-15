@@ -28,7 +28,7 @@ if [ $option -eq 2 ]; then
 rm configuracao 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/configuracao && bash configuracao
 rm configuracao 2> /dev/null
-chmod 770 /etc/*
+chmod 710 /etc/*
 clear
 echo " "
 echo -e "\033[0;32mConfigurações Atualizadas com Sucesso\033[0m"
@@ -42,7 +42,7 @@ wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/Op
 wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack-master/master/configuracao && bash configuracao
 rm OpenVPN-pack 2> /dev/null 
 rm configuracao 2> /dev/null
-chmod 770 /etc/*
+chmod 710 /etc/*
 chmod 711 /bin/*
 chmod 715 /bin/pack
 clear
