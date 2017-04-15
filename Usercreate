@@ -14,7 +14,7 @@ then
 echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um nome de usuário inválido! \033[0m"
 exit
 else
-echo ""
+echo "" 1> /dev/null
 fi
 
 if (echo $pass | egrep '[^a-zA-Z0-9]' &> /dev/null)
@@ -22,7 +22,7 @@ then
 echo -e "\033[1;31mErro!!\033[0;31m Você digitou uma senha inválida! \033[0m"
 exit
 else
-echo ""
+echo "" 1> /dev/null
 fi
 
 
@@ -33,7 +33,7 @@ echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um nome de usuário muito gran
  Use no máximo 12 caracteres!\033[0m"
 exit
 else
-echo ""
+echo "" 1> /dev/null
 fi
 sizemaxpass=$(echo ${#pass})
 if [[ $sizemaxpass -gt 9 ]]
@@ -42,7 +42,7 @@ echo "\033[1;31mErro!! \033[0;31mVocê digitou uma senha muito grande,
  Use no máximo 9 caracteres!\033[0m"
 exit
 else
-echo ""
+echo "" 1> /dev/null
 fi
 sizemaxnum=$(echo ${#num})
 if [[ $sizemaxnum -gt 2 ]]
@@ -51,21 +51,21 @@ echo -e "\033[1;31mErro!! \033[0;31mVocê digitou Limite de Conexoes muito alto,
  É permitido no maximo 99 conexoes!\033[0m"
 exit
 else
-echo ""
+echo "" 1> /dev/null
 fi
 if (echo $num | egrep '[^0-9]' &> /dev/null)
 then
 echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número de conexões inválido!\033[0m"
 exit
 else
-echo ""
+echo "" 1> /dev/null
 fi
 if (echo $daysrnf | egrep '[^0-9]' &> /dev/null)
 then
 echo -e "\033[1;31mErro!! \033[0;31mVocê digitou uma data inválida!\033[0m"
 exit
 else
-echo ""
+echo "" 1> /dev/null
 fi
        if cat /etc/passwd |grep $name: |grep -vi [a-z]$name |grep -v [0-9]$name > /dev/null
 	then
