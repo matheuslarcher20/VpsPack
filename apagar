@@ -20,20 +20,20 @@ then
 echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
 exit
 else
-echo "" 1> /dev/null
+echo ""
 fi
 if [[ $CLIENTNUMBER -gt $NUMBEROFCLIENTS ]]
 then
 echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
 exit
 else
-echo "" 1> /dev/null
+echo ""
 fi
 if [[ $CLIENTNUMBER -lt 1 ]]; then
 echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
 exit
 else
-echo "" 1> /dev/null
+echo ""
 fi
 read -p " Deseja Revover o Usuario $CLIENT ? [s/n] " -e -i n CONFIRMACAO
 echo ""
