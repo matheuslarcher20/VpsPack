@@ -69,6 +69,13 @@ exit
 else
 echo ""
 fi
+validador=$(cat /clientes/status| awk -F : '{print $1}'|grep -w $name)
+if [[ $validador = $name ]]; then
+echo  -e "\033[0;31m Usuario \033[1;31m$name\033[0;31m Ja existe!!\033[0m"
+exit
+else
+echo ""  1> /dev/null
+fi
                 valid=$(date '+%C%y/%m/%d' -d " +$daysrnf days")
                 datexp=$(date "+%d/%m/%Y" -d "+ $daysrnf days")
 ADM=$(who -m --ips)
