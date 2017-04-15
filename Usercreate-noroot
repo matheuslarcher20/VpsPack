@@ -6,21 +6,21 @@ if cat /etc/passwd |grep $user: |grep -vi [a-z]$user |grep -v [0-9]$user > /dev/
 	then
 		echo -e "\033[1;31mUsuario $user ja existe\033[0m"
 	else
-	echo ""
+	echo "" 1> /dev/null
 	fi
 if (echo $user | egrep '[^a-zA-Z0-9]')
 then
 echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um nome de usuário inválido! \033[0m"
 exit
 else
-echo ""
+echo "" 1> /dev/null
 fi
 if (echo $pass | egrep '[^a-zA-Z0-9]')
 then
 echo -e "\033[1;31mErro!!\033[0;31m Você digitou uma senha inválida! \033[0m"
 exit
 else
-echo ""
+echo "" 1> /dev/null
 fi
 sizemax=$(echo ${#user})
 if [[ $sizemax -gt 12 ]]
@@ -29,7 +29,7 @@ echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um nome de usuário muito gran
  Use no máximo 12 caracteres!\033[0m"
 exit
 else
-echo ""
+echo "" 1> /dev/null
 fi
 sizemaxpass=$(echo ${#pass})
 if [[ $sizemaxpass -gt 9 ]]
@@ -38,18 +38,18 @@ echo "\033[1;31mErro!! \033[0;31mVocê digitou uma senha muito grande,
  Use no máximo 9 caracteres!\033[0m"
 exit
 else
-echo ""
+echo "" 1> /dev/null
 fi
 if (echo $daysrnf | egrep '[^0-9]')
 then
 echo -e "\033[1;31mErro!! \033[0;31mVocê digitou uma data inválida!\033[0m"
 exit
 else
-echo ""
+echo "" 1> /dev/null
 fi
 if [ -d /clientes ]
 then
-echo ""
+echo "" 1> /dev/null
 else
 mkdir /clientes
 fi
@@ -57,12 +57,14 @@ valid=$(date '+%C%y/%m/%d' -d " +$daysrnf days")
 datexp=$(date "+%d/%m/%Y" -d "+ $daysrnf days")
 ADM=$(who -m --ips)
 useradd -m -d /clientes/$user $user -e $valid && cp /bin/criar /clientes/$user && cp /bin/apagar /clientes/$user && cp /bin/pack /clientes/$user
+cp /bin/detalhesusersADM /clientes/$user/detalhesusers
 (echo $pass; echo $pass)|passwd $user 2>/dev/null
 limit $user 1
 chmod 711 /etc
 chmod 711 /bin/*
 chmod 715 /bin/pack
 chmod 777 /clientes
+chown -R $user:$user /clientes/$user/
 chmod 700 /clientes/$user/
 chmod 700 /clientes/$user/*
 	    echo "$pass" > /etc/VpsPackdir/senha/$user
