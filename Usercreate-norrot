@@ -63,7 +63,8 @@ chmod 711 /etc
 chmod 711 /bin/*
 chmod 715 /bin/pack
 chmod 777 /clientes
-chmod 777 /clientes/$user/*
+chmod 700 /clientes/$user/
+chmod 700 /clientes/$user/*
 	    echo "$pass" > /etc/VpsPackdir/senha/$user
 	    echo "$valid" > /etc/VpsPackdir/date/$user
 	    echo "$ADM" > /etc/VpsPackdir/UsuariosADM/$user
