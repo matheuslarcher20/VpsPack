@@ -16,7 +16,10 @@ detalhes=$(printf ' %-13s' "$users")
 detalhespass=$(printf '%-11s' "$senha")
 if [[ $status = "" ]]; then
 detalhes="\033[0;31m$detalhes"
-senha="\033[0;31mErro!!"
+detalhespass="\033[0;31mErro!!"
+else
+senh4=$(cat usuarios.txt)
+fi
 echo -e "\033[1;33m$detalhes $detalhespass $detalhesdata $usernum\033[2;37m \ \033[1;33m$detalheslimit  $status\033[0m"
 echo -e "\033[1;30m-------------------------------------------------------\033[0m"
 done
