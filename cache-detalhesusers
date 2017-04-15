@@ -66,10 +66,11 @@ else
 status='\033[1;31mOff'
 fi
 if [ $usernum -eq 0 ]; then
-echo "\033[1;33m$detalhes $detalhespass $detalhesdata  \033[1;31m$usernum\033[2;37m \ \033[1;33m$detalheslimit $status\033[0m" >> /etc/detalhesusers.cache.old
+usernum="\033[1;31m$usernum"
 else
-echo "\033[1;33m$detalhes $detalhespass $detalhesdata  \033[1;32m$usernum\033[2;37m \ \033[1;33m$detalheslimit $status\033[0m" >> /etc/detalhesusers.cache.old
+usernum="\033[1;32m$usernum"
 fi
+echo "\033[1;33m$detalhes $detalhespass $detalhesdata  $usernum\033[2;37m \ \033[1;33m$detalheslimit $status\033[0m" >> /etc/detalhesusers.cache.old
 echo "\033[1;30m-------------------------------------------------------\033[0m" >> /etc/detalhesusers.cache.old
 done
 echo "\033[1;33mTotal: $usertotal     Online(SSH): \033[1;32m$calculo    \033[1;33mOnline(OpenVPN): \033[1;32m$calculovpn\033[0m" >> /etc/detalhesusers.cache.old
