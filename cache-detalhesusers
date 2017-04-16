@@ -79,6 +79,8 @@ data=$(date "+%d/%m/%Y %T")
 datacache=$(date "+%s")
 echo "Ultima atualizacao: $data" >> /etc/detalhesusers.cache.old
 echo '"' >> /etc/detalhesusers.cache.old
+validadorADM=$(cat /etc/passwd|awk -F : '{print $1}')
+echo "$validadorADM" > /clientes/validador.txt
 mv /etc/detalhesusers.cache.old /etc/detalhesusers.cache
 mv /etc/status.old /clientes/status
 echo "$datacache" > /etc/data.cache
