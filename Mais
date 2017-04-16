@@ -1,5 +1,5 @@
 echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\033[1;34m
-[1] Usercreate-norrot \033[2;36m(Criar usuario Adiministrador sem privilegio root)\033[1;34m
+[1] Usercreate-noroot \033[2;36m(Criar usuario Adiministrador sem privilegio root)\033[1;34m
 [2] UserDel-noroot \033[2;36m(Apagar usuarios Adiministrador)\033[1;34m
 [3] rootuser \033[2;36m(Criar usuario com privilegio root)\033[1;34m
 [4] block \033[2;36m(Bloquear um determinado IP)\033[1;34m
@@ -17,7 +17,7 @@ case $opcao in
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  2)
-  UserDel-norrot
+  UserDel-noroot
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  3)
