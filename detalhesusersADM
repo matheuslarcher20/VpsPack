@@ -2,14 +2,14 @@
 echo "-------------------------------------------------------
  Usuario       Senha        Data E.       SSH      VPN
 -------------------------------------------------------"
-for users in `cat usuarios.txt | awk -F : '{print $1}'|sort`
+for users in `cat usuarios.txt |cut -d ":" -f 1|sort`
 do
-senha=$(cat usuarios.txt |grep -w $users| awk -F : '{print $2}')
-limite=$(cat usuarios.txt |grep -w $users| awk -F : '{print $3}')
-data=$(cat usuarios.txt |grep -w $users| awk -F : '{print $4}')
-status=$(cat /clientes/status |grep -w $users|awk -F : '{print $3}')
-usernum=$(cat /clientes/status |grep -w $users|awk -F : '{print $2}')
-usertotal=$(cat usuarios.txt | awk -F : '{print $1}'|sort| wc -l)
+senha=$(cat usuarios.txt |grep -w $users|cut -d ":" -f 2)
+limite=$(cat usuarios.txt |grep -w $users|cut -d ":" -f 3)
+data=$(cat usuarios.txt |grep -w $users|cut -d ":" -f 4)
+status=$(cat /clientes/status |grep -w $users|cut -d ":" -f 3)
+usernum=$(cat /clientes/status |grep -w $users|cut -d ":" -f 2)
+usertotal=$(cat usuarios.txt |cut -d ":" -f 1|sort| wc -l)
 detalhesdata=$(printf '%-13s' "$data")
 detalheslimit=$(printf '%-4s' "$limite")
 detalhes=$(printf ' %-13s' "$users")
