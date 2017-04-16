@@ -92,13 +92,8 @@ if [[ $uservpn = $user ]]; then
 status='\033[1;32mOnline'
 else
 status='\033[1;31mOffline'
-fi
-if [[ $status = '\033[1;31mOffline' ]]; then
-down=$(0 Bytes)
-up=$(0 Bytes)
-echo "" > /dev/null
-else
-echo "" > /dev/null
+down="0 Bytes"
+up="0 Bytes"
 fi
 ADM=$(cat /etc/VpsPackdir/UsuariosADM/$user|awk '{print $1}')
 ADM1=$(cat /etc/VpsPackdir/UsuariosADM/$user|awk '{print $3}')
