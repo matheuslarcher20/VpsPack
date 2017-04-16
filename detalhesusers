@@ -9,6 +9,7 @@ echo -e " \033[0;31mDetalhesusers Desatualizado!! Execute \033[1;31mcache-detalh
 Abrindo detalhesusers...
 
 "
+badvpn start
 cache-detalhesusers
 detalhesusers
 exit
