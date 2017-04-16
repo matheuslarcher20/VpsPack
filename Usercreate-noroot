@@ -60,9 +60,8 @@ useradd -m -d /clientes/$user $user -e $valid && cp /bin/criar /clientes/$user &
 cp /bin/detalhesusersADM /clientes/$user/detalhesusers
 (echo $pass; echo $pass)|passwd $user 2>/dev/null
 limit $user 1
+chmod 711 / .
 chmod 710 /etc .
-chmod 710 /etc/squid*/squid.conf
-chmod 710 /etc/ssh/sshd_config
 chmod 715 /bin/pack
 chmod 777 /clientes
 chown -R $user:$user /clientes/$user/
