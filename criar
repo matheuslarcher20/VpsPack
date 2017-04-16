@@ -69,7 +69,7 @@ exit
 else
 echo ""
 fi
-validador=$(cat /clientes/status| awk -F : '{print $1}'|grep -w $name)
+validador=$(cat /clientes/validador.txt|grep -w $name)
 if [[ $validador = $name ]]; then
 echo  -e "\033[0;31m Usuario \033[1;31m$name\033[0;31m Ja existe!!\033[0m"
 exit
