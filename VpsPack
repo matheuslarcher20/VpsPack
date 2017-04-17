@@ -67,7 +67,7 @@ echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\03
 [10] speedtest \033[2;36m(Teste de conexão [velocidade de banda])\033[1;34m
 [11] systemdetalhes \033[2;36m(Detalhes sobre o Sistema)\033[1;34m
 [12] Detalhes \033[2;36m(Detalhes sobre o VpsPack)\033[1;34m
-[13] graphicsystem \033[2;36m(Mostrar um grafico com informações do sistema)\033[0m
+[13] graphicsystem \033[2;36m(Mostrar um grafico com informações do sistema)\033[1;34m
 [14] Mais \033[2;36m(Mostrar mais opções)\033[0m"
 read -p "[1-14]: " opcao
 
