@@ -5,6 +5,7 @@
 if cat /etc/passwd |grep $user: |grep -vi [a-z]$user |grep -v [0-9]$user > /dev/null
 	then
 		echo -e "\033[1;31mUsuario $user ja existe\033[0m"
+	exit
 	else
 	echo "" 1> /dev/null
 	fi
