@@ -1,28 +1,78 @@
 #!/bin/bash
 read -p "Em qual diretorio esta o arquivo de Backup: " arq
+if [ -d /clientes ]
+then
+echo "" 1> /dev/null
+else
+mkdir /clientes
+fi
+rm -rf backup.cache > /dev/null 2> /dev/null
+mkdir backup.cache
+cp $arq backup.cache
+cd backup.cache
+tar -zxvf backup.tar > /dev/null 2> /dev/null
+validADM=$(cat backupADM)
 clear
-#if [ -d $arq ]
-#then
-#echo ""
-#else
-#echo "$arq"
-#echo -e "
-#\033[1;31m Arquivo de Backup não foi encontrado\033[0m
-#"
-#exit
-#fi
-echo -e "\033[1;37mRestaurando Usuarios...\033[0m"
-for usuario in `cat $arq |awk '{print $1}'`
+if [[ $validADM = "" ]]; then
+echo "" > /dev/null
+else
+echo -e "\033[1;37mRestaurando Usuarios Adiministradores...\033[0m"
+for clientes in `cat backupADM|awk '{print $1}'`
 do
-#usuario=$(echo "$user" |awk '{print $1}')
-senha=$(cat $arq |grep -w $usuario|awk '{print $2}')
-limite=$(cat $arq |grep -w $usuario|awk '{print $3}')
-date=$(cat $arq |grep -w $usuario|awk '{print $4}')
-ADM=$(cat $arq |grep -w $usuario|awk '{print $5}')
-ADM1=$(cat $arq |grep -w $usuario|awk '{print $6}')
-ADM2=$(cat $arq |grep -w $usuario|awk '{print $7}')
-ADM3=$(cat $arq |grep -w $usuario|awk '{print $8}')
-ADM4=$(cat $arq |grep -w $usuario|awk '{print $9}')
+senha2=$(cat backupADM |grep -w $clientes|awk '{print $2}')
+limite2=$(cat backupADM |grep -w $clientes|awk '{print $3}')
+date2=$(cat backupADM |grep -w $clientes|awk '{print $4}')
+ADM2=$(cat backupADM |grep -w $clientes|awk '{print $5}')
+ADM12=$(cat backupADM |grep -w $clientes|awk '{print $6}')
+ADM22=$(cat backupADM |grep -w $clientes|awk '{print $7}')
+ADM32=$(cat backupADM |grep -w $clientes|awk '{print $8}')
+ADM42=$(cat backupADM |grep -w $clientes|awk '{print $9}')
+if [[ $ADM42 = "" ]]; then
+echo -e "
+\033[1;31m Erro!! Arquivo de Backup esta corrompido\033[0m
+"
+exit
+else
+echo "" > /dev/null
+fi
+if cat /etc/passwd |grep -w $clientes: 1> /dev/null 2>/dev/null
+then
+echo " " > /dev/null
+else
+rm -rf /clientes/$clientes > /dev/null 2>/dev/null
+useradd -m -d /clientes/$clientes $clientes -e $date2 > /dev/null 2> /dev/null
+cp /bin/criar /clientes/$clientes
+cp /bin/apagar /clientes/$clientes
+cp /bin/pack /clientes/$clientes
+cp /bin/detalhesusersADM /clientes/$clientes/detalhesusers
+(echo $senha2 ; echo $senha2) | passwd $clientes > /dev/null 2> /dev/null
+limit $clientes $limite2 1> /dev/null 2> /dev/null
+echo "$senha2" > /etc/VpsPackdir/senha/$clientes
+mv usuarios$clientes.txt /clientes/$clientes/usuarios.txt > /dev/null 2> /dev/null
+chown -R $clientes:$clientes /clientes/$clientes/
+chmod 700 /clientes/$clientes/
+chmod 700 /clientes/$clientes/*
+echo "$date2" > /etc/VpsPackdir/date/$clientes
+echo "$ADM2 $ADM12 $ADM22 $ADM32 $ADM42" > /etc/VpsPackdir/UsuariosADM/$clientes
+echo -e "\033[1;37mUsuario: \033[1;31m$clientes (Adiministrador) \033[1;37mBackup: [\033[1;31mOk\033[1;37m]\033[0m"
+fi
+done
+chmod 711 / .
+chmod 710 /etc .
+chmod 715 /bin/pack
+chmod 777 /clientes
+fi
+echo -e "\033[1;37mRestaurando Usuarios...\033[0m"
+for usuario in `cat backup |awk '{print $1}'`
+do
+senha=$(cat backup |grep -w $usuario|awk '{print $2}')
+limite=$(cat backup |grep -w $usuario|awk '{print $3}')
+date=$(cat backup |grep -w $usuario|awk '{print $4}')
+ADM=$(cat backup |grep -w $usuario|awk '{print $5}')
+ADM1=$(cat backup |grep -w $usuario|awk '{print $6}')
+ADM2=$(cat backup |grep -w $usuario|awk '{print $7}')
+ADM3=$(cat backup |grep -w $usuario|awk '{print $8}')
+ADM4=$(cat backup |grep -w $usuario|awk '{print $9}')
 if [[ $ADM4 = "" ]]; then
 echo -e "
 \033[1;31m Erro!! Arquivo de Backup esta corrompido\033[0m
@@ -45,3 +95,5 @@ echo "$ADM $ADM1 $ADM2 $ADM3 $ADM4" > /etc/VpsPackdir/UsuariosADM/$usuario
   echo -e "\033[1;37mUsuario: \033[1;31m$usuario \033[1;37mBackup: [\033[1;31mOk\033[1;37m]\033[0m"
 fi
 done
+cd ..
+rm -rf backup.cache
