@@ -76,7 +76,7 @@ exit
 else
 echo ""
 fi
-validador2=$(cat usuarios.txt|grep -w $name)
+validador2=$(cat usuarios.txt|grep -w $name|cut -d ":" -f 1)
 if [[ $validador2 = $name ]]; then
 sed -i /^$name/d usuarios.txt
 else
