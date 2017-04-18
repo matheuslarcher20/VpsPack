@@ -76,6 +76,12 @@ exit
 else
 echo ""
 fi
+validador2=$(cat usuarios.txt|grep -w $name)
+if [[ $validador2 = $name ]]; then
+sed -i /^$name/d usuarios.txt
+else
+echo ""
+fi
                 valid=$(date '+%C%y/%m/%d' -d " +$daysrnf days")
                 datexp=$(date "+%d/%m/%Y" -d "+ $daysrnf days")
 ADM=$(who -m --ips)
