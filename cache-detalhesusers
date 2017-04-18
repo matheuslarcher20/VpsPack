@@ -7,6 +7,14 @@ exit
 else
 echo "" 1> /dev/null
 fi
+VALID2=$(cat /etc/detalhesusers.cache.valid 2> /dev/null)
+if [[ $VALID2 = "" ]]
+then
+echo "" 1> /dev/null
+else
+echo "" 1> /dev/null
+exit
+fi
 detalhesusers.xp > /dev/null 2> /dev/null
 echo "#!/bin/bash" >> /etc/detalhesusers.cache.old
 echo "clear" >> /etc/detalhesusers.cache.old
@@ -84,3 +92,4 @@ echo "$validadorADM" > /clientes/validador.txt
 mv /etc/detalhesusers.cache.old /etc/detalhesusers.cache > /dev/null 2> /dev/null
 mv /etc/status.old /clientes/status > /dev/null 2> /dev/null
 echo "$datacache" > /etc/data.cache
+rm /etc/detalhesusers.cache.valid > /dev/null 2> /dev/null
