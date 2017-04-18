@@ -1,4 +1,6 @@
 #!/bin/bash
+echo -e "\033[1;37m Obtendo informações dos Usuarios...\033[0m"
+cache-detalhesusers
 cd
 if [ -d backup.cache ]
 then
