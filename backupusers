@@ -1,6 +1,13 @@
 #!/bin/bash
 cd
-rm backup > /dev/null 2> /dev/null
+if [ -d backup.cache ]
+then
+echo "" 1> /dev/null
+else
+mkdir backup.cache
+fi
+cd backup.cache
+rm backup.tar > /dev/null 2> /dev/null
 clear
 echo -e "\033[1;37mFazendo Backup de Usuarios...\033[0m"
 for user in `awk -F : '$3 > 900 ' /etc/passwd |grep -w /bin/false|grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]|awk -F : '{ print $1 }'`
@@ -13,20 +20,47 @@ echo -e "\033[1;31mNão foi possivel ter a senha do usuario\033[1;37m ($user)"
 read -p "Digite a Senha Manualmente ou Tecle ENTER: " pass
 fi
 date=$(cat /etc/VpsPackdir/date/$user)
-
 ADM=$(cat /etc/VpsPackdir/UsuariosADM/$user)
-
 if [ -e /etc/VpsPackdir/limite/$user ]
 then
 limite=$(cat /etc/VpsPackdir/limite/$user)
 echo "$user $pass $limite $date $ADM" >> backup
-echo -e "\033[1;37mUser $user Backup [\033[1;31mOK\033[1;37m]\033[0m"
+echo -e "\033[1;37mUsuario $user Backup [\033[1;31mOK\033[1;37m]\033[0m"
 else
-echo -e "\033[1;31m Erro!! Arquivo limite do usuario: $user não foi encontrado\033[0m"
+echo -e "
+\033[1;31m Erro!! Arquivo limite do usuario: $user não foi encontrado\033[0m
+"
 fi
 done
-echo " "
+for userADM in `awk -F : '$3 > 900 ' /etc/passwd |grep -vi /bin/false|grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]|awk -F : '{ print $1 }'`
+do
+if [ -e /etc/VpsPackdir/senha/$userADM ]
+then
+passADM=$(cat /etc/VpsPackdir/senha/$userADM)
+else
+echo -e "\033[1;31mNão foi possivel ter a senha do usuario\033[1;37m ($userADM)"
+read -p "Digite a Senha Manualmente ou Tecle ENTER: " pass
+fi
+dateADM=$(cat /etc/VpsPackdir/date/$userADM)
+ADMADM=$(cat /etc/VpsPackdir/UsuariosADM/$userADM)
+if [ -e /etc/VpsPackdir/limite/$userADM ]
+then
+limiteADM=$(cat /etc/VpsPackdir/limite/$userADM)
+echo "$userADM $passADM $limiteADM $dateADM $ADMADM" >> backupADM
+cp /clientes/$userADM/usuarios.txt usuarios$userADM.txt > /dev/null 2> /dev/null
+echo -e "\033[1;37mUsuario $userADM (Adiministrador) Backup [\033[1;31mOK\033[1;37m]\033[0m"
+else
+echo -e "
+\033[1;31m Erro!! Arquivo limite do usuario: $userADM não foi encontrado\033[0m
+"
+fi
+done
+tar -zcf backup.tar *
+cd ..
+rm backup.tar > /dev/null 2> /dev/null
+mv /root/backup.cache/backup.tar backup.tar
+rm -rf backup.cache
 echo -e "\033[1;31mBackup Completo !!!\033[0m"
 echo " "
-echo -e "\033[1;37mAS informações sobre usuarios ficam no arquivo \033[1;31m /root/backup \033[1;37m
+echo -e "\033[1;37mAS informações sobre usuarios ficam no arquivo\033[1;31m /root/backup.tar \033[1;37m
 Guarde os Para uma futura Restauração\033[0m"
