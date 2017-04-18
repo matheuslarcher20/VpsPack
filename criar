@@ -82,6 +82,12 @@ sed -i /^$name/d usuarios.txt
 else
 echo ""
 fi
+validador3=$(cat /clientes/criar|grep -w $name|cut -d ":" -f 1)
+if [[ $validador3 = $name ]]; then
+sed -i /^$name/d /clientes/criar
+else
+echo ""
+fi
                 valid=$(date '+%C%y/%m/%d' -d " +$daysrnf days")
                 datexp=$(date "+%d/%m/%Y" -d "+ $daysrnf days")
 ADM=$(who -m --ips)
