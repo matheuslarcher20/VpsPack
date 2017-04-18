@@ -15,4 +15,5 @@ detalhesusers
 exit
 else
 echo "Ultima atualizacao: $data" >> /etc/detalhesusers.cache.old
+cache-detalhesusers
 fi
