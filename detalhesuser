@@ -122,6 +122,8 @@ else
 user="$user (Administrador)"
 fi
 clear
+echo "
+"
 echo -e "\033[1;32m#############################################"
 echo -e "
 \033[1;36m Usuario: \033[2;37m$user
