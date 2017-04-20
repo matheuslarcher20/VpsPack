@@ -35,7 +35,7 @@ else
 echo ""
 fi
 nomer=$(cat /etc/passwd |grep $user: |grep -vi [a-z]$user |grep -v [0-9]$user |awk -F : '{print $7}')
-IP=$(cat /etc/IPSERVER)
+IP=$(cat /etc/Install-IP)
 if [[ $user = "" ]]; then
 echo -e "
  \033[1;36mSeu IP Externo é: \033[2;37m$IP\033[0m
