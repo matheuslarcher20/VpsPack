@@ -97,7 +97,7 @@ case $opcao in
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
   8)
-  graphicsystem
+  htop
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
   9)
