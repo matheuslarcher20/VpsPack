@@ -1,3 +1,4 @@
+#!/bin/bash
 echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\033[1;34m
 [1] Usercreate \033[2;36m(Criar usuarios para SSH e OpenVPN)\033[1;34m
 [2] UserRedefine \033[2;36m(Opções para mudanças no usuario)\033[1;34m
