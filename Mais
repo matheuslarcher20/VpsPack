@@ -26,6 +26,7 @@ echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\03
 read -p "[1-23]: " opcao
 
 case $opcao in
+ 1)  
   Usercreate
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
