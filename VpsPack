@@ -65,7 +65,7 @@ echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\03
 [8] graphicsystem \033[2;36m(Detalhes sobre o VpsPack)\033[1;34m
 [9] Ajuda \033[2;36m(Mostrar um grafico com informações do sistema)\033[1;34m
 [10] Mais \033[2;36m(Mostrar mais opções)\033[0m"
-read -p "[1-9]: " opcao
+read -p "[1-10]: " opcao
 
 case $opcao in
  1)
@@ -84,7 +84,7 @@ case $opcao in
   detalhesusers
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
-  5)
+ 5)
   speedtest
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
@@ -96,11 +96,11 @@ case $opcao in
   systemdetalhes
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
-  8)
+ 8)
   htop
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
-  9)
+ 9)
   Ajuda
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
