@@ -88,7 +88,9 @@ datacache=$(date "+%s")
 echo "Ultima atualizacao: $data" >> /etc/detalhesusers.cache.old
 echo '"' >> /etc/detalhesusers.cache.old
 validadorADM=$(cat /etc/passwd|awk -F : '{print $1}')
+dataxpADM=$(cat /etc/expireduser.txt|awk '{print $3}')
 echo "$validadorADM" > /clientes/validador.txt
+echo "$dataxpADM" > /clientes/dataxp.txt
 mv /etc/detalhesusers.cache.old /etc/detalhesusers.cache > /dev/null 2> /dev/null
 mv /etc/status.old /clientes/status > /dev/null 2> /dev/null
 echo "$datacache" > /etc/data.cache
