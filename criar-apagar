@@ -20,7 +20,7 @@ fi
 done
 rm /clientes/criar > /dev/null 2> /dev/null
 rm /clientes/criarADM$user > /dev/null 2> /dev/null
-if [ -d /clientes/apagar ]
+if [ -e /clientes/apagar ]
 then
 echo ""
 else
@@ -38,3 +38,15 @@ rm /etc/VpsPackdir/UsuariosADM/$name /dev/null 2>/dev/null
 done
 rm /clientes/apagar > /dev/null 2> /dev/null
 fi
+for userd in `cat /clientes/editar|awk -F : '{print $1}'`
+do
+senha=$(cat /clientes/editar | grep -w $userd |awk -F : '{print $2}')
+date=$(cat /clientes/editar | grep -w $userd |awk -F : '{print $4}')
+limite=$(cat /clientes/editar | grep -w $userd |awk -F : '{print $3}')
+  (echo $senha ; echo $senha) | passwd $userd > /dev/null 2> /dev/null
+  limit $userd $limite 1> /dev/null 2> /dev/null
+  echo "$senha" > /etc/VpsPackdir/senha/$userd
+  chage -E $date $userd 2> /dev/null
+  echo "$date" > /etc/VpsPackdir/date/$userd
+done
+rm /clientes/editar > /dev/null 2> /dev/null
