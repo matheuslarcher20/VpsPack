@@ -42,6 +42,7 @@ else
 rm -rf /clientes/$clientes > /dev/null 2>/dev/null
 useradd -m -d /clientes/$clientes $clientes -e $date2 > /dev/null 2> /dev/null
 cp /bin/criar /clientes/$clientes
+cp /bin/editar /clientes/$clientes
 cp /bin/apagar /clientes/$clientes
 cp /bin/pack /clientes/$clientes
 cp /bin/detalhesusersADM /clientes/$clientes/detalhesusers
