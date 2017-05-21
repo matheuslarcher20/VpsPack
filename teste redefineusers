@@ -1,0 +1,143 @@
+#!/bin/bash
+cd
+NUMBEROFCLIENTS=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn|sort|wc -l)
+                        if [[ "$NUMBEROFCLIENTS" = '0' ]]; then
+                                echo ""
+                                echo -e "\033[1;31mVocê não tem usuarios existentes!\033[0m"
+                                exit 6
+                        fi
+                        echo ""
+                        echo -e "\033[1;32m Selecione um usuario para editar\033[0m"
+                        awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn|sort| nl -s ') '
+                        if [[ "$NUMBEROFCLIENTS" = '1' ]]; then
+                                read -p "Selecione um usuario [1]: " CLIENTNUMBER
+                        else
+                                read -p "Selecione um usuario [1-$NUMBEROFCLIENTS]: " CLIENTNUMBER
+                        fi
+                        CLIENT=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn|sort| sed -n "$CLIENTNUMBER"p)
+if (echo $CLIENTNUMBER | egrep '[^0-9]')
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
+exit
+else
+echo ""
+fi
+if [[ $CLIENTNUMBER -gt $NUMBEROFCLIENTS ]]
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
+exit
+else
+echo ""
+fi
+if [[ $CLIENTNUMBER -lt 1 ]]; then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
+exit
+else
+echo ""
+fi
+senha=$(cat /etc/VpsPackdir/senha/$CLIENT)
+limite=$(cat /etc/VpsPackdir/limite/$CLIENT)
+data=$(cat /etc/VpsPackdir/date/$CLIENT)
+clear
+echo -e "
+\033[44;1;37m    Dados atual do usuario    \033[0m
+\033[1;36m Usuarios:\033[1;37m $CLIENT
+\033[1;36m Senha:\033[1;37m $senha
+\033[1;36m Validade:\033[1;37m $data
+\033[1;36m Conexões:\033[1;37m $limite
+"
+echo -e "
+\033[1;37mQual a nova senha do usuario $CLIENT\033[0m"
+read -e -i $senha pass
+echo -e "\033[1;37mQual a nova data de validade do usuario? Formato \033[1;33mAAAA/MM/DD \033[0m"
+read -e -i $data date
+echo -e "\033[1;37mQual o novo limite de conexões do usuario? \033[0m"
+read -e -i $limite num
+
+if (echo $pass | egrep '[^a-zA-Z0-9]')
+then
+echo -e "\033[1;31mErro!!\033[0;31m Você digitou uma senha inválida! \033[0m"
+exit
+else
+echo ""
+fi
+sizemaxpass=$(echo ${#pass})
+if [[ $sizemaxpass -gt 9 ]]
+then
+echo "\033[1;31mErro!! \033[0;31mVocê digitou uma senha muito grande,
+ Use no máximo 9 caracteres!\033[0m"
+exit
+else
+echo ""
+fi
+sizemaxnum=$(echo ${#num})
+if [[ $sizemaxnum -gt 2 ]]
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou Limite de Conexoes muito alto,
+ É permitido no maximo 99 conexoes!\033[0m"
+exit
+else
+echo ""
+fi
+if (echo $num | egrep '[^0-9]')
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número de conexões inválido!\033[0m"
+exit
+else
+echo ""
+fi
+if (echo $date | egrep '[^0-9/]')
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou uma data inválida!\033[0m"
+exit
+else
+echo ""
+fi
+validador=$(cat /clientes/editar|grep -w $CLIENT|cut -d ":" -f 1)
+if [[ $validador = $CLIENT ]]; then
+sed -i /^$CLIENT/d /clientes/editar
+else
+echo ""
+fi
+echo -e "
+\033[44;1;37m    Novos dados do usuario    \033[0m
+\033[1;32m Usuarios:\033[1;37m $CLIENT
+\033[1;32m Senha:\033[1;37m $pass
+\033[1;32m Validade:\033[1;37m $date
+\033[1;32m Conexões:\033[1;37m $num\033[0m
+"
+read -p " Deseja editar o Usuario $CLIENT ? [s/n] " -e -i n CONFIRMACAO
+echo ""
+if [[ "$CONFIRMACAO" = 's' ]]; then
+echo ""
+else
+echo "
+ Edição de usuarios abordada!
+"
+exit
+fi
+
+ userdel --force $CLIENT > /dev/null 2>/dev/null
+ rm /etc/usuarios/$CLIENT.sh /dev/null 2>/dev/null
+ rm /etc/tempo/$CLIENT.sh /dev/null 2>/dev/null
+ rm /etc/VpsPackdir/limite/$CLIENT /dev/null 2>/dev/null
+ rm /etc/VpsPackdir/senha/$CLIENT /dev/null 2>/dev/null
+ rm /etc/VpsPackdir/date/$CLIENT /dev/null 2>/dev/null
+useradd -M -s /bin/false $CLIENT -e $date
+(echo $pass; echo $pass)|passwd $CLIENT 2>/dev/null
+limit $CLIENT $num
+ echo "$senha" > /etc/VpsPackdir/senha/$CLIENT
+ echo "$data" > /etc/VpsPackdir/date/$CLIENT
+clear
+                echo -e "\033[1;32m################################\033[0m"
+                echo -e "\033[1;36m                        \033[0m"
+                echo -e "\033[1;36m                        \033[2;40m"
+                echo -e "\033[1;36mUsuario: \033[2;37m$CLIENT"
+		echo -e "\033[1;36mSenha: \033[2;37m$pass"
+		echo -e "\033[1;36mExpira: \033[2;37m$date"
+                echo -e "\033[1;36mConexoes(SSH): \033[2;37m$num"
+                echo -e "\033[1;36m                        \033[2;40m"
+                echo -e "\033[1;36m                        \033[0m"
+                echo -e "\033[1;32m################################\033[0m"
+                echo -e "\033[1;36m                        \033[0m"
+                echo -e "\033[1;36m                        \033[0m"
