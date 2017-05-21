@@ -7,7 +7,7 @@ NUMBEROFCLIENTS=$(cat usuarios.txt|cut -d ":" -f 1|wc -l)
                                 exit 6
                         fi
                         echo ""
-                        echo -e "\033[1;32m Selecione um usuario para remover\033[0m"
+                        echo -e "\033[1;32m Selecione um usuario para editar\033[0m"
                         cat usuarios.txt|cut -d ":" -f 1| nl -s ') '
                         if [[ "$NUMBEROFCLIENTS" = '1' ]]; then
                                 read -p "Selecione um usuario [1]: " CLIENTNUMBER
