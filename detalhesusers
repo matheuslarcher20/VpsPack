@@ -9,6 +9,7 @@ echo -e " \033[0;31mDetalhesusers Desatualizado!! Execute \033[1;31mcache-detalh
 Abrindo detalhesusers...
 
 "
+sleep 10s
 badvpn start
 cache-detalhesusers
 bash /etc/detalhesusers.cache
