@@ -5,12 +5,10 @@ datacache=$(cat /etc/data.cache)
 datareal=$(($data - $datacache))
 if [[ $datareal -gt 200 ]]
 then
-screen -S detalhesusers cache-detalhesusers.install
-#echo -e " \033[0;31mDetalhesusers Desatualizado!! Execute \033[1;31mcache-detalhesusers.install \033[0;31mem uma sessao \033[1;31mscreen!\033[0m
-#Abrindo detalhesusers..."
 badvpn start
-cache-detalhesusers
-bash /etc/detalhesusers.cache
+clear
+echo -e " \033[1;32mcache-detalhesusers.install foi instalado com sucesso!! Fexe essa sessão e inicie uma nova. \033[0m"
+screen -S detalhesusers cache-detalhesusers.install
 exit
 else
 cache-detalhesusers
