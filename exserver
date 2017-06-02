@@ -1,0 +1,25 @@
+#!/bin/bash
+for usuario in `cat exserverusers.txt |awk '{print $1}'`
+do
+senha=$(cat exserverusers.txt |grep -w $usuario|awk '{print $2}')
+limite=$(cat exserverusers.txt |grep -w $usuario|awk '{print $3}')
+date=$(cat exserverusers.txt |grep -w $usuario|awk '{print $4}')
+ADM=$(cat exserverusers.txt |grep -w $usuario|awk '{print $5}')
+ADM1=$(cat exserverusers.txt |grep -w $usuario|awk '{print $6}')
+ADM2=$(cat exserverusers.txt |grep -w $usuario|awk '{print $7}')
+ADM3=$(cat exserverusers.txt |grep -w $usuario|awk '{print $8}')
+ADM4=$(cat exserverusers.txt |grep -w $usuario|awk '{print $9}')
+if cat /etc/passwd |grep -w $usuario: 1> /dev/null 2>/dev/null
+then
+echo " " > /dev/null
+else
+  useradd -M -s /bin/false $usuario
+  (echo $senha ; echo $senha) | passwd $usuario > /dev/null 2> /dev/null
+  limit $usuario $limite 1> /dev/null 2> /dev/null
+  echo "$senha" > /etc/VpsPackdir/senha/$usuario
+  chage -E $date $usuario 2> /dev/null
+  echo "$date" > /etc/VpsPackdir/date/$usuario
+echo "$ADM $ADM1 $ADM2 $ADM3 $ADM4" > /etc/VpsPackdir/UsuariosADM/$usuario
+fi
+done
+rm exserverusers.txt > /dev/null 2> /dev/null
