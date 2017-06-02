@@ -1,4 +1,5 @@
 #!/bin/bash
+cd 
 echo -e "\033[1;37m Obtendo informações dos Usuarios...\033[0m"
 cache-detalhesusers
 cd
@@ -35,5 +36,8 @@ echo -e "
 fi
 done
 rootname=$(who |awk '{print $1}')
-scp exserverusers.txt "$rootname"@51.15.60.17:/root
+for HOST in `cat /etc/exHOST.txt`
+do
+scp exserverusers.txt "$rootname"@"$HOST":/root
+done
 rm exserverusers.txt
