@@ -8,6 +8,7 @@ then
 badvpn start
 clear
 echo -e " \033[1;32mcache-detalhesusers.install foi instalado com sucesso!! Fexe essa sessão e inicie uma nova. \033[0m"
+sleep 5s
 screen -S detalhesusers cache-detalhesusers.install
 exit
 else
