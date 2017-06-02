@@ -3,14 +3,6 @@ cd
 echo -e "\033[1;37m Obtendo informações dos Usuarios...\033[0m"
 cache-detalhesusers
 cd
-if [ -d backup.cache ]
-then
-echo "" 1> /dev/null
-else
-mkdir backup.cache
-fi
-cd backup.cache
-rm backup.tar > /dev/null 2> /dev/null
 clear
 echo -e "\033[1;37mFazendo Backup de Usuarios...\033[0m"
 for user in `awk -F : '$3 > 900 ' /etc/passwd |grep -w /bin/false|grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]|awk -F : '{ print $1 }'`
