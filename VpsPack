@@ -57,14 +57,15 @@ echo -e "\033[1;37m VpsPacket © Script criado por: \033[2;32mMatheus Larcher \0
 echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\033[1;34m
 [1] Usercreate \033[2;36m(Criar usuarios para SSH e OpenVPN)\033[1;34m
 [2] UserRedefine \033[2;36m(Opções para mudanças no usuario)\033[1;34m
-[3] detalhesuser \033[2;36m(Mostra informações de um unico usuario !!)\033[1;34m
-[4] detalhesusers \033[2;36m(Mostra informações de todos os usuarios !!)\033[1;34m
-[5] speedtest \033[2;36m(Teste de conexão [velocidade de banda])\033[1;34m
-[6] Trafego \033[2;36m(Mostrar trafego da rede em tempo real)\033[1;34m
-[7] systemdetalhes \033[2;36m(Detalhes sobre o Sistema)\033[1;34m
-[8] graphicsystem \033[2;36m(Detalhes sobre o VpsPack)\033[1;34m
-[9] Ajuda \033[2;36m(Mostrar um grafico com informações do sistema)\033[1;34m
-[10] Mais \033[2;36m(Mostrar mais opções)\033[0m"
+[3] transferirusers \033[2;36m(Copiar usuarios para outros servidores)\033[1;34m
+[4] detalhesuser \033[2;36m(Mostra informações de um unico usuario !!)\033[1;34m
+[5] detalhesusers \033[2;36m(Mostra informações de todos os usuarios !!)\033[1;34m
+[6] speedtest \033[2;36m(Teste de conexão [velocidade de banda])\033[1;34m
+[7] Trafego \033[2;36m(Mostrar trafego da rede em tempo real)\033[1;34m
+[8] systemdetalhes \033[2;36m(Detalhes sobre o Sistema)\033[1;34m
+[9] graphicsystem \033[2;36m(Detalhes sobre o VpsPack)\033[1;34m
+[10] Ajuda \033[2;36m(Mostrar um grafico com informações do sistema)\033[1;34m
+[11] Mais \033[2;36m(Mostrar mais opções)\033[0m"
 read -p "[1-10]: " opcao
 
 case $opcao in
@@ -77,34 +78,38 @@ case $opcao in
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  3)
-  detalhesuser
+  transferirusers
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  4)
-  detalhesusers
+  detalhesuser
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  5)
-  speedtest
+  detalhesusers
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  6)
-  nbwmon
+  speedtest
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  7)
-  systemdetalhes
+  nbwmon
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  8)
-  htop
+  systemdetalhes
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  9)
-  Ajuda
+  htop
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
  10)
+  Ajuda
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+ 11)
   Mais
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
