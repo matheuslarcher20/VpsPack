@@ -38,6 +38,6 @@ done
 rootname=$(who -m|awk '{print $1}')
 for HOST in `cat /etc/exHOST.txt`
 do
-scp exserverusers.txt "$rootname"@"$HOST":exserverusers.txt
+scp exserverusers.txt "$rootname"@"$HOST":/etc/exserverusers.txt
 done
 rm exserverusers.txt
