@@ -35,7 +35,7 @@ echo -e "
 "
 fi
 done
-rootname=$(who |awk '{print $1}')
+rootname=$(who -m|awk '{print $1}')
 for HOST in `cat /etc/exHOST.txt`
 do
 scp exserverusers.txt "$rootname"@"$HOST":exserverusers.txt
