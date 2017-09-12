@@ -1,0 +1,32 @@
+#!/bin/bash
+echo "-------------------------------------------------------
+ Usuario       Senha        Data E.       SSH      VPN
+-------------------------------------------------------"
+
+for users in `cat /etc/expireduser.txt|awk '{print $3}'|sort`
+do
+if cat /etc/VpsPackdir/limite/$users > /dev/null 2> /dev/null
+then
+limitecs=$(cat /etc/VpsPackdir/limite/$users)
+else
+limitecs="null"
+fi
+if (cat /etc/VpsPackdir/senha/$users > /dev/null 2> /dev/null)
+then
+senha=$(cat /etc/VpsPackdir/senha/$users)
+else
+senha="null"
+fi
+data=$(chage -l $users |grep -i co |awk -F : '{print $2}')
+dataxp1=$(cat /etc/expireduser.txt |grep -w $users|awk '{print $7}')
+dataxp2=$(cat /etc/expireduser.txt |grep -w $users|awk '{print $8}')
+dataxp3=$(cat /etc/expireduser.txt |grep -w $users|awk '{print $9}')
+done
+total=$(cat /etc/expireduser.txt|awk '{print $3}'|sort|wc -w)
+detalhesdata=$(printf '%-13s' "$data")
+detalheslimit=$(printf '%-4s' "$limitecs")
+detalhes=$(printf ' %-13s' "$users")
+detalhespass=$(printf '%-11s' "$senha")
+
+
+
