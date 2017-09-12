@@ -25,7 +25,7 @@ echo "-------------------------------------------------------
  Usuario       Senha        Data E.       SSH      VPN
 -------------------------------------------------------" >> /etc/detalhesusers.cache.old
 
-for users in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn|sort`
+for users in `cat /etc/activeuser.txt|sort`
 do
 if cat /etc/VpsPackdir/limite/$users > /dev/null 2> /dev/null
 then
@@ -40,16 +40,16 @@ else
 senha="null"
 fi
 data=$(chage -l $users |grep -i co |awk -F : '{print $2}')
-dataxp=$(cat /etc/expireduser.txt |grep -w $users |awk '{print $3}')
+#dataxp=$(cat /etc/expireduser.txt |grep -w $users |awk '{print $3}')
 data7xp=$(cat /etc/infouser.txt |grep -w $users |awk '{print $3}')
 if [[ $data7xp = $users ]]
 then
 data="\033[0;33m$data"
 fi
-if [[ $dataxp = $users ]]
-then
-data="\033[0;31m$data"
-fi
+#if [[ $dataxp = $users ]]
+#then
+#data="\033[0;31m$data"
+#fi
 if [[ $data = never ]] 2> /dev/null
 then
 data="Nunca"
