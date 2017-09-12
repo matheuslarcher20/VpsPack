@@ -1,6 +1,7 @@
 #!/bin/bash
 criar-apagar /dev/null 2>/dev/null
 exserverUsers /dev/null 2>/dev/null
+detalhesusers.ac
 VALID=$(ps x | grep "sshd:" | grep -vi color)
 if [[ $VALID = '' ]]; then
 echo "" 1> /dev/null
