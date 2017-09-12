@@ -1,6 +1,7 @@
 #!/bin/bash
+clear
 echo "-------------------------------------------------------
- Usuario       Senha        Data E.       SSH      VPN
+ Usuario      Senha      SSH      Data C.      Data E.
 -------------------------------------------------------"
 
 for users in `cat /etc/expireduser.txt|awk '{print $3}'|sort`
@@ -21,12 +22,12 @@ data=$(chage -l $users |grep -i co |awk -F : '{print $2}')
 dataxp1=$(cat /etc/expireduser.txt |grep -w $users|awk '{print $7}')
 dataxp2=$(cat /etc/expireduser.txt |grep -w $users|awk '{print $8}')
 dataxp3=$(cat /etc/expireduser.txt |grep -w $users|awk '{print $9}')
-done
-total=$(cat /etc/expireduser.txt|awk '{print $3}'|sort|wc -w)
 detalhesdata=$(printf '%-13s' "$data")
 detalheslimit=$(printf '%-4s' "$limitecs")
 detalhes=$(printf ' %-13s' "$users")
 detalhespass=$(printf '%-11s' "$senha")
-
-
-
+echo -e "\033[1;33m$detalhes $detalhespass $detalheslimit $detalhesdata $detalhesdataxp1 $detalhesdataxp2 $detalhesdataxp3"
+echo -e "\033[1;30m-------------------------------------------------------\033[0m"
+done
+total=$(cat /etc/expireduser.txt|awk '{print $3}'|sort|wc -w)
+echo -e "\033[1;32m Total de Usuarios: $total\033[0m"
