@@ -54,7 +54,7 @@ if [[ $data = never ]] 2> /dev/null
 then
 data="Nunca"
 fi
-usertotal=$(awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn| wc -l)
+usertotal=$(cat /etc/activeuser.txt|sort| wc -l)
 calculo=$(ps x | grep "sshd:" |grep "priv" |grep -vi root |wc -l)
 if (cat /etc/openvpn/openvpn-status.log > /dev/null 2> /dev/null)
 then
