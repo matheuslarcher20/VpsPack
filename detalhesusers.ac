@@ -1,11 +1,12 @@
+rm /etc/activeuser.txt
 for users in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi system- |grep -vi openvpn|sort`
 do
 dataxp=$(cat /etc/expireduser.txt |grep -w $users|awk -F : '{print $3}')
 if [[ $dataxp = "" ]]
 then
-echo "$users" >> /etc/activeuser.txt
+echo "$users" >> /etc/activeuser.txt.old
 else
 echo "" > /dev/null
 fi
 done
-
+mv /etc/activeuser.txt.old /etc/activeuser.txt
