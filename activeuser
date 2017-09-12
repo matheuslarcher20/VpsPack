@@ -3,10 +3,9 @@ do
 dataxp=$(cat /etc/expireduser.txt |grep -w $users|awk -F : '{print $3}')
 if [[ $dataxp = "" ]]
 then
-echo "" > /dev/null
+echo "$users" >> /etc/activeuser.txt
 else
 echo "" > /dev/null
-exit
 fi
-echo "$users" >> teste4
 done
+
