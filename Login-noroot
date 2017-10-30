@@ -1,0 +1,41 @@
+#!/bin/bash
+NUMBEROFCLIENTS=$(awk -F : '$3 > 900 ' /etc/passwd |grep -vi /bin/false|grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]|awk -F : '{ print $1 }'|sort|wc -l)
+if [[ "$NUMBEROFCLIENTS" = '0' ]]; then
+echo ""
+echo -e "\033[1;31mVocê não tem usuarios existentes!\033[0m"
+exit 6
+fi
+NUMBEROFCLIENTS=$(awk -F : '$3 > 900 ' /etc/passwd |grep -vi /bin/false|grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]|awk -F : '{ print $1 }'|sort| wc -l)
+echo -e "\033[44;1;37m      Faça login com um Usuário       \033[0m"
+awk -F : '$3 > 900 ' /etc/passwd |grep -vi /bin/false|grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]|awk -F : '{ print $1 }'|sort |nl -s ") "
+ if [[ "$NUMBEROFCLIENTS" = '1' ]]; then
+ read -p "Selecione um usuario [1]: " CLIENTNUMBER
+ else
+ read -p "Selecione um usuario [1-$NUMBEROFCLIENTS]: " CLIENTNUMBER
+ fi
+user=$(awk -F : '$3 > 900 ' /etc/passwd |grep -vi /bin/false|grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]|awk -F : '{ print $1 }'|sort| sed -n "$CLIENTNUMBER"p)
+if (echo $CLIENTNUMBER | egrep '[^0-9]')
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
+exit
+else
+echo ""
+fi
+if [[ $CLIENTNUMBER -gt $NUMBEROFCLIENTS ]]
+then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
+exit
+else
+echo ""
+fi
+if [[ $CLIENTNUMBER -lt 1 ]]; then
+echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
+exit
+else
+echo ""
+fi
+IP=$(cat /etc/Install-IP)
+nomer=$(cat /etc/passwd |grep $user: |grep -vi [a-z]$user |grep -v [0-9]$user |awk -F : '{print $7}')
+senha=$(cat /etc/VpsPackdir/senha/$user)
+echo -e "\033[1;36m Senha: \033[2;37m$senha" 
+ssh $user@$IP -p 22 
