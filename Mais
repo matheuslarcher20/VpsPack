@@ -22,8 +22,9 @@ echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\03
 [20] backupusers \033[2;36m(Backup dos usuarios para reinstalação futura)\033[1;34m
 [21] restusers \033[2;36m(Restaurar usuarios feito backup)\033[1;34m
 [22] banner \033[2;36m(Banner mensagem no ssh)\033[1;34m
-[23] Atualizar \033[2;36m(Atualizar VpsPack e Configurações)\033[0m"
-read -p "[1-23]: " opcao
+[23] Login-noroot \033[2;36m(Faça login com um usuario Administrador)\033[1;34m
+[24] Atualizar \033[2;36m(Atualizar VpsPack e Configurações)\033[0m"
+read -p "[1-24]: " opcao
 
 case $opcao in
  1)  
@@ -70,7 +71,7 @@ case $opcao in
   UserDel-noroot
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
- 12)
+  12)
   CrtCreate
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
@@ -115,6 +116,10 @@ case $opcao in
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;; 
  23)
+  Login-noroot
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;; 
+ 24)
   Atualizar
   read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
   VpsPack;;
