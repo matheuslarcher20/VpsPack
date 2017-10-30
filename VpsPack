@@ -10,10 +10,12 @@ else
         echo "Voce não é root"
         echo "Seu usuario esta no grupo sudo"
         echo -e "Para virar root execute \033[1;31msudo su\033[0m"
+        pack
         exit
         else
         clear
         echo -e "Vc nao esta como usuario root, nem com seus direitos (sudo)\nPara virar root execute \033[1;31msu\033[0m e digite sua senha root"
+        pack
         exit
         fi
 fi
