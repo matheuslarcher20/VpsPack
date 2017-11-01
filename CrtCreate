@@ -1,5 +1,5 @@
 #!/bin/bash
-nomecoment=$(echo VIVO🇧🇷)
+nomecoment=$(echo VIVO)
 newclient () {
         # Generates the custom client.ovpn
         cp /etc/openvpn/client-common.txt ~/$nomecoment'-'$1.ovpn
