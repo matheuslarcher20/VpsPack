@@ -42,6 +42,6 @@ else
                         echo " "
                         echo -e "\033[1;36m Novo certificado foi gerado para: \033[1;37m$CLIENT\033[0m"
                         echo " "
-                        echo -e "\033[1;36m Seu arquivo está disponivel em \033[1;37m" ~/"Vivo_BR_$CLIENT.ovpn\033[0m"
+                        echo -e "\033[1;36m Seu arquivo está disponivel em \033[1;37m" ~/"$nomecoment_$CLIENT.ovpn\033[0m"
                      fi
 exit
